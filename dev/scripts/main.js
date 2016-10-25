@@ -13,9 +13,9 @@ appSong.getMatchingCities = function (city) {
       apikey: 'hHSjLHKTmsfByvxU'
     }
   }).then(function(metroLocation) {
-    metroLocation = metroLocation;
-    appSong.displayLocations(metroLocation.resultsPage.results.location)
-    //console.log(metroLocation);
+    metroLocation = metroLocation.resultsPage.results.location
+    appSong.getLocations(metroLocation);
+    console.log(metroLocation);
   });
 }
 
@@ -35,7 +35,8 @@ appSong.getMetroId = function (metroID) {
 //when user enters city in search field, take value and search in appSong.getMatchingCities
 appSong.usersLocation = function() {
 
-  $('form').on('submit', function() {
+  $('form').on('submit', function(e) {
+    e.preventDefault();
     var usersLocation = $("input[type=search]").val()
     appSong.getMatchingCities(usersLocation);
   });
@@ -49,9 +50,18 @@ appSong.getLocations = function(locationResults){
 
   locationResults = locationResults.filter(function(locationLoop) {
       console.log(locationLoop);
+      return locationLoop
   });
+  appSong.displayLocation(locationResults)
 
 } //appSong.getLocations
+
+appSong.displayLocation = function (displayLocation){
+  $('.citySelection').empty();
+
+  var $dropDownCity = $('') 
+
+}
 
 
 
