@@ -1,0 +1,38 @@
+// using the songkick api, allow users to input their current location
+// display list of bands for the coming month playing the area that the user specified - one month from the date that they've searched from 
+//var now = new Date();
+now.setDate(now.getDate() + 30);
+// allow the user to select a band
+// using the spotify API, generate a playlist based on the artist selected
+// generate link to playlist 
+// allow user to click on link to link them to their spotify account (may have to log in)
+// Display playlist based on selected measures
+
+
+//calling the api using an ajax call
+// use the search locations call to first have users enter their geographic location 
+// create a rule that checks for if someone is putting in a postal code, prompt to put valid city name
+// grab the id that is associated with that location (location. metro area. id)
+// put that id into the query search for metro areas http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json?apikey={your_api_key}
+//that will display the concerts that are happening in the area (need to figure out how to cap results at one month)
+// user will then select one artist from the list (event.performance.artist.displayName). this will be used in the spotify api
+// client_id: d3dc1222c5184993bddad0fa6b53fbf4
+//client_secret: c6461a15139446c6aea0b5854cd1f8ce
+//when a user picks an artist, take the displayName and use it as the query in the spotify playlist search
+https://api.spotify.com/v1/search?client_id=d3dc1222c5184993bddad0fa6b53fbf4&client_secret=c6461a15139446c6aea0b5854cd1f8ce&type=playlist&query=example
+// display playlist options (first 3, create nice grid) and then bring user to clicked item in spotify 
+
+
+
+d.getMonth();
+10
+d.getFullYear();
+2016
+d.getDay();
+3
+d.getDate();
+23
+
+
+concat d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate()
+match to event.date
