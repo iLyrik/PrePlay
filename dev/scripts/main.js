@@ -1,3 +1,5 @@
-const ohHey = "Hello World";
+var appSong = {};
 
-console.log(ohHey);
+appSong.getSongs = function () {
+  $.ajax 
+}

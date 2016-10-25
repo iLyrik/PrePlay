@@ -1,4 +1,5 @@
-@import 'setup';
+@import "_variables";
+@import "_normalize";
 
 .container {
 	max-width: 1200px;
@@ -6,3 +7,6 @@
   display: flex;
   color: white;
 } 
+
+
+@import "_media";
