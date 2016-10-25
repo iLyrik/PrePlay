@@ -1,8 +1,10 @@
 var appSong = {};
-
+// test
 appSong.getMetro = function (metroID) {
   $.ajax ({
-    console.log('appSong.getMetro', arguments);
+
+    // console.log('appSong.getMetro', arguments);
+
     url: 'http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json',
     method: 'GET',
     format: 'json',
