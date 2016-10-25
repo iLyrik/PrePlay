@@ -3,6 +3,8 @@ var appSong = {};
 //returns list of cities that match query name
 appSong.getMatchingCities = function (city) {
   $.ajax ({
+    // console.log('appSong.getMetro', arguments);
+
     url: 'http://api.songkick.com/api/3.0/search/locations.json',
     method: 'GET',
     dataType: 'json',
