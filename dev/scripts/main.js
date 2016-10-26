@@ -101,28 +101,29 @@ appSong.displayConcerts = function(concertsPlaying) {
 //take the concert results and display the concert name and bands involved at the concert
   concertsPlaying.forEach(function(concertInfo) {
 
-    //var displayArtists = concertInfo.performance
-
-    // for(var i = 0; i <= displayartists.length; i = i + 1){
-    //   var eachBandName = concertInfo.performance.displayName
-    // }
-
     var $concertResults = $('<article>')
     var $concertName = $('<h2>').text(concertInfo.displayName)
-    var $bandLists = $('<ul>')
-    var $bandNames = $('<li>').text(concertInfo.performance.displayName)
-    // var $bandNames = $('<input>').attr({
-    //     value: concertInfo.performance.displayName,
-    //     name: "bandNames",
-    //     type: "radio",
-    //     id: concertInfo.performance.displayName
-    //   });
-    // var $bandLabel = $('<label>').text(concertInfo.performance.displayName).attr({
-    //     for: concertInfo.performance.displayName
-    //   });
+    
+    $concertResults.append($concertName)
 
-    $($bandLists).append($bandNames)
-    $($concertResults).append($concertName, $bandLists)
+    var $bandFilter = concertInfo.performance
+
+    $bandFilter.forEach(function(bandFilter) {
+      var $bandForm = $('<form>')
+      var $bandNames = $('<input>').attr({
+          value: bandFilter.displayName,
+          name: "bandNames",
+          type: "radio",
+          id: bandFilter.displayName
+        });
+      var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
+          for: bandFilter.displayName
+        });
+      $bandForm.append($bandNames, $bandLabel)
+      $concertResults.append($bandForm)
+
+    })
+
     $('.bandSelection').append($concertResults)
 
   });
