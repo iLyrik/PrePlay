@@ -16,8 +16,12 @@ now.setDate(now.getDate() + 30);
 // put that id into the query search for metro areas http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json?apikey={your_api_key}
 //that will display the concerts that are happening in the area (need to figure out how to cap results at one month)
 // user will then select one artist from the list (event.performance.artist.displayName). this will be used in the spotify api
+
+
 // client_id: d3dc1222c5184993bddad0fa6b53fbf4
 //client_secret: c6461a15139446c6aea0b5854cd1f8ce
+
+
 //when a user picks an artist, take the displayName and use it as the query in the spotify playlist search
 https://api.spotify.com/v1/search?client_id=d3dc1222c5184993bddad0fa6b53fbf4&client_secret=c6461a15139446c6aea0b5854cd1f8ce&type=playlist&query=example
 // display playlist options (first 3, create nice grid) and then bring user to clicked item in spotify 
