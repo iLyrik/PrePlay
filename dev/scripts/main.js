@@ -46,7 +46,7 @@ appSong.usersLocation = function() {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
-    var usersLocation = $("input[type=search]").val()
+    var usersLocation = $("input[type=text]").val()
     appSong.getMatchingCities(usersLocation);
   });
 
@@ -137,5 +137,5 @@ appSong.init = function() {
 }
 
 $(function() {
-  appSong.init();
+  appSong.init()
 });
