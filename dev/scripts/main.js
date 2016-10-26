@@ -14,8 +14,8 @@ appSong.getMatchingCities = function (city) {
     }
   }).then(function(metroLocation) {
     metroLocation = metroLocation.resultsPage.results.location
-    appSong.getLocations(metroLocation);
-    console.log(metroLocation);
+    appSong.displayLocation(metroLocation);
+    console.log('appSong.getMatchingCities', metroLocation);
   });
 }
 
@@ -49,15 +49,19 @@ appSong.usersLocation = function() {
 
 
 //display matching cities and have user select the correct one 
-appSong.getLocations = function(locationResults){
 
-  locationResults = locationResults.filter(function(locationLoop) {
-      console.log(locationLoop);
-      return locationLoop
-  });
-  appSong.displayLocation(locationResults)
 
-} //appSong.getLocations
+//------ apparently line 20, the api call, returns a list of cities so we might not need this filtered loop
+
+// appSong.getLocations = function(locationResults){
+
+//   locationResults = locationResults.filter(function(locationLoop) {
+//       console.log('filters locations', locationLoop);
+//       return locationLoop
+//   });
+//   appSong.displayLocation(locationResults)
+
+// } //appSong.getLocations
 
 
 //displays the dropdown with the cities that match what the user inputting
@@ -70,7 +74,7 @@ appSong.displayLocation = function (displayLocation){
 
   });
 
-  console.log(displayLocation)
+  console.log('drop down cities', displayLocation)
 
 }
 
