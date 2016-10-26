@@ -46,12 +46,16 @@ appSong.usersLocation = function() {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
-    var usersLocation = $("input[type=text]").val()
-    appSong.getMatchingCities(usersLocation);
+    var location = $('#autocomplete').val();
+    location = location.split(',')
+    console.log(location)
+    var city = location[0]
+    var state = location[1]
+    var country = location[2]
+    // appSong.getMatchingCities(city);
   });
 
 } //appSong.usersLocation
-
 
 //STEP 3 --- might not need -- filtering auto complete
 // appSong.displayLocation = function(displayLocation) {
@@ -82,6 +86,46 @@ appSong.usersLocation = function() {
 // // takes the results from the location search and passes it along to the concert search
 //   appSong.findConcerts(displayLocation)
 // }
+
+//1.a autocomplete the input for city selection
+
+appSong.getLocations = function(){
+     var autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('autocomplete')),
+      {types: ['geocode']});
+     console.log("testing", autocomplete)
+
+}
+
+//STEP 3
+appSong.displayLocation = function(displayLocation) {
+//display matching cities and have user select the correct one 
+//displays the cities that match what the user inputting
+  //$('.cities').empty();
+
+//creates the radio buttons
+//take the results of what they've inputted and use it to find the metroID
+//creates a radio button for each possible result based on the name of the location
+
+  displayLocation.forEach(function(locationChoice) {
+    var $radioButtonsCity = $('<input>').attr({
+      value: locationChoice.metroArea.id, 
+      name: "locationChoice", 
+      type: "radio",
+      id: locationChoice.metroArea.id
+    })
+    var $radioLabel = $('<label>').text(locationChoice.city.displayName + ', ' + locationChoice.city.country.displayName).attr({
+      for: locationChoice.metroArea.id
+    })
+// appends the options to the page in the form of radio buttons
+    $('.cities').append($radioButtonsCity, $radioLabel);
+
+  });
+
+  console.log('drop down cities', displayLocation)
+// takes the results from the location search and passes it along to the concert search
+  appSong.findConcerts(displayLocation)
+}
 
 //STEP 5
 appSong.findConcerts = function(findConcerts) {
@@ -148,6 +192,7 @@ appSong.matchBands = function(matchBands) {
 
 //then display the concerts in that metro id
 appSong.init = function() {
+  appSong.getLocations();
   appSong.usersLocation();
 }
 
