@@ -30,8 +30,9 @@ appSong.getMetroId = function (metroID) {
       apikey: 'hHSjLHKTmsfByvxU'
     }
   }).then(function(bandReturn) {
-    bandReturn = bandReturn
-    console.log(bandReturn)
+    bandReturn = bandReturn.resultsPage.results.event
+    appSong.displayConcerts(bandReturn)
+    console.log('return bands playing', bandReturn)
   });
 }
 
@@ -48,19 +49,6 @@ appSong.usersLocation = function() {
   });
 
 } //appSong.usersLocation
-
-
-//------ apparently line 20, the api call, returns a list of cities so we might not need this filtered loop
-
-// appSong.getLocations = function(locationResults){
-
-//   locationResults = locationResults.filter(function(locationLoop) {
-//       console.log('filters locations', locationLoop);
-//       return locationLoop
-//   });
-//   appSong.displayLocation(locationResults)
-
-// } //appSong.getLocations
 
 
 //display matching cities and have user select the correct one 
@@ -90,6 +78,7 @@ appSong.displayLocation = function(displayLocation) {
   console.log('drop down cities', displayLocation)
 // takes the results from the location search and passes it along to the concert search
   appSong.findConcerts(displayLocation)
+}
 
 // find concerts that are in the same metroID area as was indicated based on above
 appSong.findConcerts = function(findConcerts) {
@@ -103,6 +92,30 @@ appSong.findConcerts = function(findConcerts) {
   });
 }
 
+appSong.displayConcerts = function(displayConcerts) {
+
+  displayConcerts.forEach(function(concertInfo) {
+    var $concertResults = $('<article>')
+    var $concertName = $('<h2>').text(displayConcerts.displayName)
+
+    $concertName.forEach(function(bandNames) {
+      var $bandNames = $('<input>').attr({
+        value: $concertName.performance.artist.displayName,
+        name: "bandNames",
+        type: "radio",
+        id: $concertName.performance.artist.displayName
+      });
+      var $bandLabel = $('<label>').text($concertName.performance.artist.displayName).attr({
+        for: 
+      });
+
+    });
+    $($concertResults).append($concertName, $bandNames, $bandLabel)
+    $('.bandSelection').append($concertResults)
+
+  });
+
+}
 
 
 //take the matching metro id and enter into getMetroID
