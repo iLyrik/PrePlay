@@ -50,6 +50,58 @@ appSong.getMatchingCities = function (city) {
   });
 }
 
+
+//STEP 4
+// returns the metro ID of the user selected city
+appSong.getMetroId = function (metroID) {
+  $.ajax ({
+    url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
+    method: 'get',
+    dataType: 'json',
+    data: {
+      apikey: 'hHSjLHKTmsfByvxU'
+    }
+  }).then(function(bandReturn) {
+    bandReturn = bandReturn.resultsPage.results.event
+    appSong.displayConcerts(bandReturn)
+    console.log('return bands playing', bandReturn)
+  });
+}
+
+//this is the start of everything
+//STEP 1
+//when user enters city in search field, take value and search in appSong.getMatchingCities
+appSong.usersLocation = function() {
+    $('.cities').hide();
+
+  $('.locationInput').on('submit', function(e) {
+    $('.cities').show();
+    e.preventDefault();
+    var location = $('#autocomplete').val();
+    location = location.split(',')
+    console.log(location)
+    var city = location[0]
+    var state = location[1]
+    var country = location[2]
+    
+
+    // appSong.getMatchingCities(city);
+
+    appSong.getMatchingCities.forEach(function(compareCity) {
+      // if user selected city matches the values of the API
+      if (city === compareCity.city.displayName && compareCity.city.state.displayName) {
+        // run the getMetroID function
+        appSong.getMetroId(compareCity);
+        console.log(compareCity);
+      };
+    });
+
+
+
+  });
+
+} //appSong.usersLocation
+
 //STEP 3 --- might not need -- filtering auto complete
 // appSong.displayLocation = function(displayLocation) {
 // //display matching cities and have user select the correct one 
