@@ -1,0 +1,15 @@
+button {
+	background: $orange;
+	border: none;
+	border-radius: 3px;
+	padding: 15px;
+	font-family: $headerText;
+	color: $purple;
+	margin-top: 20px;
+	transition: ease all .4s;
+	&:hover {
+		background-color: $purple;
+		color: $orange;
+	}
+}
+
