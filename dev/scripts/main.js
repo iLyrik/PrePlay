@@ -40,7 +40,7 @@ appSong.usersLocation = function() {
     $('.cities').show();
 
     e.preventDefault();
-    var usersLocation = $("input[type=search]").val()
+    var usersLocation = $("input[type=radio]").val()
     appSong.getMatchingCities(usersLocation);
   });
 
@@ -53,15 +53,15 @@ appSong.usersLocation = function() {
 
 //------ apparently line 20, the api call, returns a list of cities so we might not need this filtered loop
 
-// appSong.getLocations = function(locationResults){
+appSong.getLocations = function(locationResults){
 
-//   locationResults = locationResults.filter(function(locationLoop) {
-//       console.log('filters locations', locationLoop);
-//       return locationLoop
-//   });
-//   appSong.displayLocation(locationResults)
+  locationResults = locationResults.filter(function(locationLoop) {
+      console.log('filters locations', locationLoop);
+      return locationLoop
+  });
+  appSong.displayLocation(locationResults)
 
-// } //appSong.getLocations
+} //appSong.getLocations
 
 
 //displays the dropdown with the cities that match what the user inputting
