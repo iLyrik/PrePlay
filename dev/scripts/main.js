@@ -34,8 +34,11 @@ appSong.getMetroId = function (metroID) {
 
 //when user enters city in search field, take value and search in appSong.getMatchingCities
 appSong.usersLocation = function() {
+    $('.cities').hide();
 
   $('form').on('submit', function(e) {
+    $('.cities').show();
+
     e.preventDefault();
     var usersLocation = $("input[type=search]").val()
     appSong.getMatchingCities(usersLocation);
@@ -56,10 +59,18 @@ appSong.getLocations = function(locationResults){
 
 } //appSong.getLocations
 
+
+//displays the dropdown with the cities that match what the user inputting
 appSong.displayLocation = function (displayLocation){
   $('.citySelection').empty();
 
-  var $dropDownCity = $('') 
+  displayLocation.forEach(function(locationChoice) {
+    var $dropDownCity = $('<option>').text(locationChoice.city.displayName + ', ' + locationChoice.city.country.displayName).attr({value: locationChoice.metroAreaid})
+    $('.cities').append($dropDownCity);
+
+  });
+
+  console.log(displayLocation)
 
 }
 
