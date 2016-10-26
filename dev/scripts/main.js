@@ -109,19 +109,18 @@ appSong.displayConcerts = function(concertsPlaying) {
 
     var $concertResults = $('<article>')
     var $concertName = $('<h2>').text(concertInfo.displayName)
-    var $bandLists = $('<ul>')
-    var $bandNames = $('<li>').text(concertInfo.performance.displayName)
-    // var $bandNames = $('<input>').attr({
-    //     value: concertInfo.performance.displayName,
-    //     name: "bandNames",
-    //     type: "radio",
-    //     id: concertInfo.performance.displayName
-    //   });
-    // var $bandLabel = $('<label>').text(concertInfo.performance.displayName).attr({
-    //     for: concertInfo.performance.displayName
-    //   });
+    var $bandLists = concertInfo.performance.displayName.filter(function () {
+      var $bandNames = $('<input>').attr({
+          value: concertInfo.performance.displayName,
+          name: "bandNames",
+          type: "radio",
+          id: concertInfo.performance.displayName
+        });
+      var $bandLabel = $('<label>').text(concertInfo.performance.displayName).attr({
+          for: concertInfo.performance.displayName
+        });
+    })
 
-    $($bandLists).append($bandNames)
     $($concertResults).append($concertName, $bandLists)
     $('.bandSelection').append($concertResults)
 
