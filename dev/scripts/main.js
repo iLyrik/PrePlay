@@ -52,7 +52,21 @@ appSong.usersLocation = function() {
     var city = location[0]
     var state = location[1]
     var country = location[2]
+    
+
     // appSong.getMatchingCities(city);
+
+    appSong.getMatchingCities.forEach(function(compareCity) {
+      // if user selected city matches the values of the API
+      if (city === compareCity.city.displayName && compareCity.city.state.displayName) {
+        // run the getMetroID function
+        appSong.getMetroId(compareCity);
+        console.log(compareCity);
+      };
+    });
+
+
+
   });
 
 } //appSong.usersLocation
