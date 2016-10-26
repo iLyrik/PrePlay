@@ -1,8 +1,37 @@
 @import "_variables";
 @import "_normalize";
 @import "_reset";
+@import "_autoComplete";
 @import "_media";
 
 
 
+body {
+	background-image: url(../../assets/concert-img.jpg);
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: $bodyText;
+}
 
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h1, h2 {
+		font-family: $headerText;
+		color: white;
+		margin: 0;
+		padding: 0 0 10px 0;
+	}
+}
+
+input {
+	font-weight: bold;
+	&[type=search] {
+		width: 300px;
+	}
+}
