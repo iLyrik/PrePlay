@@ -20,6 +20,7 @@ appSong.getMatchingCities = function (city) {
 }
 
 
+// returns the metro ID of the user selected city
 appSong.getMetroId = function (metroID) {
   $.ajax ({
     url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
@@ -41,7 +42,6 @@ appSong.usersLocation = function() {
 
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
-
     e.preventDefault();
     var usersLocation = $("input[type=search]").val()
     appSong.getMatchingCities(usersLocation);
@@ -90,9 +90,6 @@ appSong.displayLocation = function(displayLocation) {
   console.log('drop down cities', displayLocation)
 // takes the results from the location search and passes it along to the concert search
   appSong.findConcerts(displayLocation)
-
-}
-
 
 // find concerts that are in the same metroID area as was indicated based on above
 appSong.findConcerts = function(findConcerts) {
