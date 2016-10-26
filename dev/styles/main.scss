@@ -1,13 +1,11 @@
-@import "_variables";
 @import "_normalize";
 @import "_reset";
-@import "_autoComplete";
+@import "_variables";
+@import "_buttons";
 @import "_media";
 
-
-
 body {
-	background-image: url(../../assets/concert-img.jpg);
+	background-image: linear-gradient(rgba(5,5,5,.5),rgba(5,5,5,.5)),url(../../assets/concert-img.jpg);
 	background-size: cover;
 	height: 100vh;
 	display: flex;
@@ -27,6 +25,20 @@ header {
 		color: white;
 		margin: 0;
 		padding: 0 0 10px 0;
+	}
+	h1 {
+		font-size: 80px;
+	}
+}
+
+.logo {
+	position: absolute;
+	top: 10px;
+	left: 80px;
+	h4{
+		font-family: $headerText;
+		color: $orange;
+		font-size: 40px;
 	}
 }
 

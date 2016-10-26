@@ -193,11 +193,21 @@ appSong.init = function() {
   appSong.usersLocation();
 }
 
+
+
 $(function() {
   appSong.init()
+  //hide everything except for the heading and the slogan
+  $('.search').hide();
+  $('.bandSelection').hide();
+  $('.spotifyResults').hide();
+
+  //on click of the startBtn, hide the header page and show the search page
+  $('.startBtn').on('click', function(){
+    $('.titlePage').fadeOut();
+    $('.search').fadeIn();
+  })
 });
-
-
 
 
 //STEP 3 --- might not need -- filtering auto complete
@@ -229,3 +239,5 @@ $(function() {
 // // takes the results from the location search and passes it along to the concert search
 //   appSong.findConcerts(displayLocation)
 // }
+
+
