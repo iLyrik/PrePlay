@@ -46,12 +46,27 @@ appSong.usersLocation = function() {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
-    var usersLocation = $("input[type=text]").val()
-    appSong.getMatchingCities(usersLocation);
+    var location = $('#autocomplete').val();
+    location = location.split(',')
+    console.log(location)
+    var city = location[0]
+    var state = location[1]
+    var country = location[2]
+    // appSong.getMatchingCities(city);
   });
 
 } //appSong.usersLocation
 
+
+//1.a autocomplete the input for city selection
+
+appSong.getLocations = function(){
+     var autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('autocomplete')),
+      {types: ['geocode']});
+     console.log("testing", autocomplete)
+
+}
 
 //STEP 3
 appSong.displayLocation = function(displayLocation) {
@@ -134,6 +149,7 @@ appSong.displayConcerts = function(concertsPlaying) {
 
 //then display the concerts in that metro id
 appSong.init = function() {
+  appSong.getLocations();
   appSong.usersLocation();
 }
 
