@@ -19,15 +19,17 @@ appSong.getMatchingCities = function (city) {
   });
 }
 
+// returns the metro ID of the user selected city
 appSong.getMetroId = function (metroID) {
   $.ajax ({
-    url: 'http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json',
+    url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
     method: 'get',
     dataType: 'json',
     data: {
-      q: metroID,
       apikey: 'hHSjLHKTmsfByvxU'
     }
+  }).then(function(selectedLocation) {
+    appSong.displayLocation(selectedLocation);
   });
 }
 
@@ -35,7 +37,7 @@ appSong.getMetroId = function (metroID) {
 //when user enters city in search field, take value and search in appSong.getMatchingCities
 appSong.usersLocation = function() {
 
-  $('form').on('submit', function(e) {
+  $('#searchLocation').on('submit', function(e) {
     e.preventDefault();
     var usersLocation = $("input[type=search]").val()
     appSong.getMatchingCities(usersLocation);
@@ -56,7 +58,7 @@ appSong.getLocations = function(locationResults){
 
 } //appSong.getLocations
 
-appSong.displayLocation = function (displayLocation){
+appSong.displayLocation = function (selectedLocation){
   $('.citySelection').empty();
 
   var $dropDownCity = $('') 
