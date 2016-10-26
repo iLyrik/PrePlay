@@ -1,5 +1,6 @@
 var appSong = {};
 
+//STEP 2
 //returns list of cities that match query name
 appSong.getMatchingCities = function (city) {
   $.ajax ({
@@ -19,7 +20,7 @@ appSong.getMatchingCities = function (city) {
   });
 }
 
-
+//STEP 4
 // returns the metro ID of the user selected city
 appSong.getMetroId = function (metroID) {
   $.ajax ({
@@ -36,7 +37,8 @@ appSong.getMetroId = function (metroID) {
   });
 }
 
-
+//this is the start of everything
+//STEP 1
 //when user enters city in search field, take value and search in appSong.getMatchingCities
 appSong.usersLocation = function() {
     $('.cities').hide();
@@ -44,16 +46,17 @@ appSong.usersLocation = function() {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
-    var usersLocation = $("input[type=search]").val()
+    var usersLocation = $("input[type=text]").val()
     appSong.getMatchingCities(usersLocation);
   });
 
 } //appSong.usersLocation
 
 
+//STEP 3
+appSong.displayLocation = function(displayLocation) {
 //display matching cities and have user select the correct one 
 //displays the cities that match what the user inputting
-appSong.displayLocation = function(displayLocation) {
   //$('.cities').empty();
 
 //creates the radio buttons
@@ -80,8 +83,9 @@ appSong.displayLocation = function(displayLocation) {
   appSong.findConcerts(displayLocation)
 }
 
-// find concerts that are in the same metroID area as was indicated based on above
+//STEP 5
 appSong.findConcerts = function(findConcerts) {
+// find concerts that are in the same metroID area as was indicated based on above
   $('.cities').on('submit', function(e) {
     e.preventDefault();
     // when the user submits the location (the 'specific Toronto', take the value of the radio button
@@ -92,29 +96,36 @@ appSong.findConcerts = function(findConcerts) {
   });
 }
 
-appSong.displayConcerts = function(displayConcerts) {
+//STEP 6
+appSong.displayConcerts = function(concertsPlaying) {
+//take the concert results and display the concert name and bands involved at the concert
+  concertsPlaying.forEach(function(concertInfo) {
 
-  displayConcerts.forEach(function(concertInfo) {
+    //var displayArtists = concertInfo.performance
+
+    // for(var i = 0; i <= displayartists.length; i = i + 1){
+    //   var eachBandName = concertInfo.performance.displayName
+    // }
+
     var $concertResults = $('<article>')
-    var $concertName = $('<h2>').text(displayConcerts.displayName)
+    var $concertName = $('<h2>').text(concertInfo.displayName)
+    var $bandLists = $('<ul>')
+    var $bandNames = $('<li>').text(concertInfo.performance.displayName)
+    // var $bandNames = $('<input>').attr({
+    //     value: concertInfo.performance.displayName,
+    //     name: "bandNames",
+    //     type: "radio",
+    //     id: concertInfo.performance.displayName
+    //   });
+    // var $bandLabel = $('<label>').text(concertInfo.performance.displayName).attr({
+    //     for: concertInfo.performance.displayName
+    //   });
 
-    $concertName.forEach(function(bandNames) {
-      var $bandNames = $('<input>').attr({
-        value: $concertName.performance.artist.displayName,
-        name: "bandNames",
-        type: "radio",
-        id: $concertName.performance.artist.displayName
-      });
-      var $bandLabel = $('<label>').text($concertName.performance.artist.displayName).attr({
-        for: 
-      });
-
-    });
-    $($concertResults).append($concertName, $bandNames, $bandLabel)
+    $($bandLists).append($bandNames)
+    $($concertResults).append($concertName, $bandLists)
     $('.bandSelection').append($concertResults)
 
   });
-
 }
 
 
@@ -126,5 +137,5 @@ appSong.init = function() {
 }
 
 $(function() {
-  appSong.init();
+  appSong.init()
 });
