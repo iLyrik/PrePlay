@@ -43,7 +43,7 @@ appSong.usersLocation = function() {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
-    var usersLocation = $("input[type=search]").val()
+    var usersLocation = $("input[type=text]").val()
     appSong.getMatchingCities(usersLocation);
   });
 
@@ -90,6 +90,7 @@ appSong.displayLocation = function(displayLocation) {
   console.log('drop down cities', displayLocation)
 // takes the results from the location search and passes it along to the concert search
   appSong.findConcerts(displayLocation)
+}
 
 // find concerts that are in the same metroID area as was indicated based on above
 appSong.findConcerts = function(findConcerts) {
@@ -113,5 +114,5 @@ appSong.init = function() {
 }
 
 $(function() {
-  appSong.init();
+  appSong.init()
 });
