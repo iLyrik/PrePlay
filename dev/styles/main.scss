@@ -15,6 +15,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-family: $bodyText;
+	color: white;
 }
 
 header {
@@ -29,9 +30,22 @@ header {
 	}
 }
 
-input {
+.locationInput {
+	.citySearch {
+		text-align: center;
+	}
+	.search {
+		width: 250px;
+		font-weight: bold;
+	}
+}
+
+input[type=submit] {
 	font-weight: bold;
-	&[type=search] {
-		width: 300px;
+}
+
+.bandSelection {
+	h2 {
+		font-size: 18px;
 	}
 }
