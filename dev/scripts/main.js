@@ -252,6 +252,23 @@ appSong.init = function() {
   appSong.usersLocation();
 }
 
+
 $(function() {
   appSong.init()
+  //hide everything except for the heading and the slogan
+  $('.search').hide();
+  $('.bandSelection').hide();
+  $('.spotifyResults').hide();
+
+  //on click of the startBtn, hide the header page and show the search page
+  $('.startBtn').on('click', function(){
+    $('.titlePage').fadeOut();
+    $('.search').fadeIn();
+  })
+
 });
+
+
+
+
+
