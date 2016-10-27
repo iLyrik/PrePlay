@@ -163,6 +163,7 @@ appSong.displayConcerts = function(concertsPlaying) {
     }
   }
     
+    
   } else if (concertsPlaying.length === 0) {
     $('.noconcertsresults').fadeIn();
   }
@@ -182,14 +183,7 @@ appSong.matchBands = function(matchBands) {
     appSong.getSpotify(appSong.bandPicked)
     //console.log('bandPicked', appSong.bandPicked)
     $('.bandSelection').hide();
-    
-    $('#loadScreen').fadeIn();
     $('.spotifyResults').show();
-    $('#loadScreen').fadeOut(3500);
-    // $('.spotifyResults').on('load', function() {
-    //   $('#loadScreen').hide();
-    // });
-    
   });
 
 } //appSong.matchBands
@@ -224,6 +218,8 @@ appSong.displayPlaylist = function(displayPlaylist) {
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
 
+    $('.allPlayLists').append($bandPicked)
+
     displayPlaylist.forEach(function(showingPlaylists) {
       var $playlistResult = $('<article>').addClass('playlist');
       var playlistURI = showingPlaylists.uri
@@ -238,7 +234,7 @@ appSong.displayPlaylist = function(displayPlaylist) {
 
       $playlistResult.append($actualPlaylist);  
 
-      $('.allPlayLists').append($bandPicked, $playlistResult);
+      $('.allPlayLists').append($playlistResult);
 
     })
 
@@ -261,7 +257,8 @@ appSong.init = function() {
 $(function() {
   // shows a loading screen before everything loads, then hides it
   window.addEventListener('load', function() {
-    $('#loadScreen').fadeOut();
+    var load_screen = document.getElementById('loadScreen');
+    document.body.removeChild(load_screen);
   });
   
   appSong.init()
