@@ -221,10 +221,8 @@ $(function() {
   appSong.init()
   //hide everything except for the heading and the slogan
   $('.search').hide();
-  $('.theConcerts').hide();
+  $('.bandSelection').hide();
   $('.spotifyResults').hide();
-  //$('.bandSelection').hide();
-  //$('.spotifyResults').hide();
 
   //on click of the startBtn, hide the header page and show the search page
   $('.startBtn').on('click', function(){
