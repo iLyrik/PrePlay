@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>My Project</title>
+	<script src="https://use.fontawesome.com/c8b1c0d14a.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Montserrat:700" rel="stylesheet">
 	<link rel="stylesheet" href="public/styles/styles.css">
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzjU8P-6Ko0zSK9OG7wIU8rPE3I2-P79A&libraries=places"></script>
 </head>
 <body>
 
-
-	
 	<header class="titlePage">
 			<!--insert logo here-->
-			<h1>PrePlay</h1>
+			<img src="assets/logo.svg" alt="PrePlay Logo" class="mainLogo">
 			<h2>The pre-party playlist to get you ready for the live show</h2>
 			<button type="button" class="startBtn">Get Listening</button>
-
 	</header>
+
 	<section class="search">
 		<div class="logo">
-			<h4>PrePlay</h4>
+			<img src="assets/logo.svg" alt="PrePlay Logo">
 		</div>
 		<form action="" class="locationInput">
 			<label for="search" class="locationSearch"></label>
@@ -31,9 +31,9 @@
 
 	<section class="bandSelection">
 		<div class="logo">
-			<h4>PrePlay</h4>
+			<img src="assets/logo.svg" alt="PrePlay Logo">
 		</div>
-    <article>
+    <article class="modal">
       <form class="theConcerts">
         <input type="submit" name="submit" placeholder="Find Playlists">
       </form>
@@ -42,26 +42,50 @@
 
 	<section class="spotifyResults">
 		<div class="logo">
-			<h4>PrePlay</h4>
+			<img src="assets/logo.svg" alt="PrePlay Logo">
 		</div>
 
 	</section>
 
-
-
-
-
-
 	<footer>
-		<p>Created by <a href="http://www.ilanalily.ca">Ilana Solomons</a>, <a href="http://portfolio.erikadonovan.com">Erika Donovan</a>, <a href="http://www.myronzhao.com">& Myron Zhao</a> 2016.</p>
-		<p>Icons by Sma-rtez from Noun Project. Powered by the <a href="http://www.songkick.com/">Songkick</a> & <a href="https://www.spotify.com">Spotify</a> API.</p>
+		<div class="contactUs">
+		<h6>Created by</h6>
+		<ul>
+			<li>
+				<a href="http://www.ilanalily.ca">Ilana Solomons</a>
+			</li>
+			<li class="socialIcons">
+				<a href="https://twitter.com/ilanalily_"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="https://github.com/ilanalily"><i class="fa fa-github" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/ilanasolomons?trk=nav_responsive_tab_profile_pic"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+			</li>
+			<li>
+				<a href="http://portfolio.erikadonovan.com">Erika Donovan</a>
+			</li>
+			<li class="socialIcons">
+				<a href="https://twitter.com/erkdonovan"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="https://github.com/erkdonovan"><i class="fa fa-github" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/erikadonovan?authType=NAME_SEARCH&authToken=VqPa&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A76155602%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1477587119162%2Ctas%3Aerika%20"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+			</li>
+			<li>
+				<a href="http://www.myronzhao.com">Myron Zhao</a>
+			</li>
+			<li class="socialIcons">
+				<a href="https://twitter.com/myronzhao"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="https://github.com/myronzhao"><i class="fa fa-github" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/myron-zhao-48456763?authType=NAME_SEARCH&authToken=BUVu&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A225330148%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1477587330409%2Ctas%3Amyron%20z"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+			</li>
+		</ul>
+
+
+		<!--  <a href="http://www.myronzhao.com">Myron Zhao</a> &copy; 2016.</p>
+		<p>Images from <a href="http://blog.virginia.org/2016/04/15-virginia-music-festivals-2016-rock/">blog.virginia.org</a></p>
+		<p>Icons by Sma-rtez from Noun Project. Powered by the <a href="http://www.songkick.com/">Songkick</a> & <a href="https://www.spotify.com">Spotify</a> API.</p> -->
 	</footer>
+
 
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="public/scripts/main.js"></script>
 
-
-
-	
 </body>
 </html>
