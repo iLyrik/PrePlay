@@ -1,8 +1,8 @@
 var appSong = {};
 
-appSong.city = ''
-appSong.state = ''
-appSong.country = ''
+appSong.city = '';
+appSong.state = '';
+appSong.country = '';
 
 //this is the start of everything
 //STEP 1
@@ -15,7 +15,7 @@ appSong.usersLocation = function(city) {
     e.preventDefault();
     var location = $('#autocomplete').val();
     //take the location that the user entered and split into an array
-    location = location.split(',')
+    location = location.split(', ')
 
     console.log(location)
     
@@ -33,18 +33,17 @@ appSong.usersLocation = function(city) {
 
 //STEP 1A autocomplete the input for city selection
 appSong.getLocations = function(){
-     var autocomplete = new google.maps.places.Autocomplete(
-            (document.getElementById('autocomplete')),
-      {types: ['geocode']});
-     console.log("testing", autocomplete)
-
+ var autocomplete = new google.maps.places.Autocomplete(
+    (document.getElementById('autocomplete')),
+     {types: ['geocode']});
+ console.log("testing", autocomplete)
 
 } //appSong.getLocations
 
 
 //STEP 2
 //returns list of cities that match query name
-appSong.getMatchingCities = function (city) {
+appSong.getMatchingCities = function(city) {
   $.ajax ({
     // console.log('appSong.getMetro', arguments);
     url: 'http://api.songkick.com/api/3.0/search/locations.json',
@@ -66,18 +65,22 @@ appSong.getMatchingCities = function (city) {
 //STEP 3
 appSong.matchLocations = function(matchLocations) {
 
-  if (appSong.city === matchLocations.displayName && appSong.country === matchLocations.country.displayName) {
-    return matchLocations.id
-  } else {
-    alert('No matching location');
-  }
-  console.log('matchLocations', matchLocations.id)
-}
+  console.log('matchLocations', matchLocations)
 
+  for(var i = 0; i <= matchLocations.length; i = i + 1){
+
+    if (appSong.city === matchLocations[i].city.displayName && appSong.country === matchLocations[i].city.country.displayName) {
+      var metroID = matchLocations[i].metroArea.id
+      
+      appSong.getMetroId(metroID)
+    }  
+  }
+} 
 
 //STEP 4
 // returns the metro ID of the user selected city
 appSong.getMetroId = function(metroID) {
+  console.log('appSong.getMetroId', metroID)
   $.ajax ({
     url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
     method: 'get',
@@ -120,7 +123,6 @@ appSong.displayConcerts = function(concertsPlaying) {
     var $bandFilter = concertInfo.performance
 
       $bandFilter.forEach(function(bandFilter) {
-        var $bandForm = $('<form>')
         var $bandNames = $('<input>').attr({
             value: bandFilter.displayName,
             name: "bandNames",
@@ -130,12 +132,12 @@ appSong.displayConcerts = function(concertsPlaying) {
         var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
             for: bandFilter.displayName
           });
-        $bandForm.append($bandNames, $bandLabel)
-        $concertResults.append($bandForm)
+
+        $concertResults.append($bandNames, $bandLabel)
 
       })
 
-    $('.bandSelection').append($concertResults)
+    $('.theConcerts').append($concertResults)
 
   });
 
@@ -199,8 +201,8 @@ $(function() {
   appSong.init()
   //hide everything except for the heading and the slogan
   $('.search').hide();
-  $('.bandSelection').hide();
-  $('.spotifyResults').hide();
+  //$('.bandSelection').hide();
+  //$('.spotifyResults').hide();
 
   //on click of the startBtn, hide the header page and show the search page
   $('.startBtn').on('click', function(){
