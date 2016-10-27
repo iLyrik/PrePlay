@@ -4,10 +4,11 @@
 @import "_buttons";
 @import "_searchSection";
 @import "_footer";
-@import "_media";
+@import "_bandSection";
+
 
 body {
-	background-image: linear-gradient(rgba(5,5,5,.5),rgba(5,5,5,.5)),url(../../assets/concert-img.jpg);
+	background-image: linear-gradient(rgba(5,5,5,.6),rgba(5,5,5,.6)),url(../../assets/festival.jpg);
 	background-size: cover;
 	height: 100vh;
 	display: flex;
@@ -22,11 +23,14 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	h1, h2 {
+	h2 {
 		font-family: $headerText;
 		color: white;
 		margin: 0;
-		padding: 0 0 10px 0;
+		padding: 0 60px;
+		text-transform: uppercase;
+		color: $grey;
+	    text-align: center;
 	}
 	.mainLogo {
 		width: 75%;
@@ -39,6 +43,7 @@ header {
 	left: 80px;
 	img {
 		width: 30%;
+	    margin-top: 25px;	
 	}
 }
 
@@ -61,3 +66,5 @@ input[type=submit] {
 		font-size: 18px;
 	}
 }
+
+@import "_media";

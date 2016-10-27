@@ -1,0 +1,32 @@
+/*.bandSelection {
+	.modal {
+		display: flex;
+		width: 50%;{
+		input[type="radio"] {
+		display: none;
+	}
+}*/
+
+.bandSelection {
+	.modal {
+		display: flex;
+		width: 75%;
+		height: 60vh;
+		overflow-y: scroll;
+		background: rgba(198,197,185, .9);
+		margin: 0 auto;
+		border: 2px solid $purple;
+		border-radius: 3px;
+		padding: 10px;
+		color: $purple;
+		input[type="radio"]{
+			display: none;
+		}
+		input[type="submit"] {
+			position: absolute;
+		    bottom: 85px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+	}
+}
