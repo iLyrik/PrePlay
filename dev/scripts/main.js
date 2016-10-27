@@ -120,17 +120,18 @@ appSong.displayConcerts = function(concertsPlaying) {
 //take the concert results and display the concert name and bands involved at the concert
   
   if (concertsPlaying.length != 0){
-    var $locationPicked = $('<h2>').text(appSong.locationPicked)
+    //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
+    //$('.theConcerts').append($locationPicked);
     
     concertsPlaying.forEach(function(concertInfo) {
 
-      var $concertResults = $('<article>').addClass('concertResults')
-      var $concertName = $('<h3>').text(concertInfo.displayName)
-      var $bandLists = $('<div>').addClass('bandButtons')
+      var $concertResults = $('<article>').addClass('concertResults');
+      var $concertName = $('<h3>').text(concertInfo.displayName);
+      var $bandLists = $('<div>').addClass('bandButtons');
       
-      $concertResults.append($concertName, $bandLists)
+      $concertResults.append($concertName, $bandLists);
 
-      var $bandFilter = concertInfo.performance
+      var $bandFilter = concertInfo.performance;
 
       $bandFilter.forEach(function(bandFilter) {
         var $bandNames = $('<input>').attr({
@@ -143,11 +144,11 @@ appSong.displayConcerts = function(concertsPlaying) {
             for: bandFilter.displayName
           });
 
-        $bandLists.append($bandNames, $bandLabel)
+        $bandLists.append($bandNames, $bandLabel);
 
       })
 
-      $('.theConcerts').append($locationPicked, $concertResults)
+      $('.theConcerts').append($concertResults);
 
     });
     
@@ -205,6 +206,8 @@ appSong.displayPlaylist = function(displayPlaylist) {
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
 
+    $('.allPlayLists').append($bandPicked)
+
     displayPlaylist.forEach(function(showingPlaylists) {
       var $playlistResult = $('<article>').addClass('playlist');
       var playlistURI = showingPlaylists.uri
@@ -221,7 +224,7 @@ appSong.displayPlaylist = function(displayPlaylist) {
 
       $playlistResult.append($actualPlaylist);  
 
-      $('.allPlayLists').append($bandPicked, $playlistResult);
+      $('.allPlayLists').append($playlistResult);
 
     })
 
