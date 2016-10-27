@@ -237,7 +237,14 @@ appSong.init = function() {
 }
 
 $(function() {
+  // shows a loading screen before everything loads, then hides it
+  window.addEventListener('load', function() {
+    var load_screen = document.getElementById('loadScreen');
+    document.body.removeChild(load_screen);
+  });
+  
   appSong.init()
+
   //hide everything except for the heading and the slogan
   $('.search').hide();
   $('.bandSelection').hide();
