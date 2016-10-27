@@ -101,20 +101,20 @@ appSong.getMetroId = function(metroID) {
 
 
 //STEP 5
-appSong.findConcerts = function(findConcerts) {
-// find concerts that are in the same metroID area as was indicated based on above
-  $('.findConcertsBtn').on('submit', function(e) {
-    e.preventDefault();
-    //move from the search section to the concerts section using fade
-    $('.search').fadeOut();
-    $('.theConcerts').fadeIn();
-    // when the user submits the location (the 'specific Toronto', take the value of the radio button
-    //put it into the metroID search to return concert listings within that area
-    var usersMetroId = $("input[type=radio]").val()
-    console.log("users metroID", usersMetroId)
-    appSong.getMetroId(usersMetroId);
-  });
-}
+// appSong.findConcerts = function(findConcerts) {
+// // find concerts that are in the same metroID area as was indicated based on above
+//   $('.locationInput').on('submit', function(e) {
+//     e.preventDefault();
+//     //move from the search section to the concerts section using fade
+//     $('.locationSearch').fadeOut();
+//     $('.bandSelection').fadeIn();
+//     // when the user submits the location (the 'specific Toronto', take the value of the radio button
+//     //put it into the metroID search to return concert listings within that area
+//     var usersMetroId = $("input[type=radio]").val()
+//     console.log("users metroID", usersMetroId)
+//     appSong.getMetroId(usersMetroId);
+//   });
+// }
 
 
 //STEP 6
@@ -220,11 +220,9 @@ $(function() {
   appSong.init()
   //hide everything except for the heading and the slogan
   $('.search').hide();
-  $('.theConcerts').hide();
+  $('.bandSelection').hide();
   $('.spotifyResults').hide();
-  //$('.bandSelection').hide();
-  //$('.spotifyResults').hide();
-
+ 
   //on click of the startBtn, hide the header page and show the search page
   $('.startBtn').on('click', function(){
     $('.titlePage').fadeOut();
