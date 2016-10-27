@@ -73,7 +73,11 @@ appSong.matchLocations = function(matchLocations) {
       var metroID = matchLocations[i].metroArea.id
       
       appSong.getMetroId(metroID)
-    }  
+      return false;
+    } else {
+      alert("TEST!");
+      return false;
+    }
   }
 } 
 
