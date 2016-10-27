@@ -1,25 +1,12 @@
 
-
-
-
-
-
-
-/*footer*/
 @media (max-width: 915px) {
-	body {
-	height: 113vh;
-	}
 	footer {
-		height: 110px;
+		height: 60px;
 		flex-direction: column;
-		bottom: -69px;
+		bottom: 0px;
 		padding: 0 45px;
 		.credit {
-			text-align: center;
-			ul {
-				padding: 0;
-			}
+			display: none;
 		}
 		.contactUs {
 			h6 {
@@ -33,6 +20,27 @@
 				}
 			}
 		}
+	}
+}
+
+@media (max-width: 450px) {
+	header {
+		margin-top: -100px;
+	}
+}
+
+@media (max-height: 415px) {
+	body {
+		height: 100vh;
+	}
+	header {
+		margin-top: -100px;
+		.mainLogo {
+			width: 50%;
+		}
+	}
+	footer {
+		bottom: 0px;
 	}
 }
 
