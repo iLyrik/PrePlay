@@ -113,6 +113,7 @@ appSong.getMetroId = function(metroID) {
 //     //put it into the metroID search to return concert listings within that area
 //     var usersMetroId = $('input[type=radio]').val()
 //     //console.log('users metroID', usersMetroId)
+
 //     appSong.getMetroId(usersMetroId);
 //   });
 // }
