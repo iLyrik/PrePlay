@@ -28,8 +28,8 @@ header {
 		margin: 0;
 		padding: 0 0 10px 0;
 	}
-	h1 {
-		font-size: 80px;
+	.mainLogo {
+		width: 75%;
 	}
 }
 
@@ -37,10 +37,8 @@ header {
 	position: absolute;
 	top: 10px;
 	left: 80px;
-	h4{
-		font-family: $headerText;
-		color: $orange;
-		font-size: 40px;
+	img {
+		width: 30%;
 	}
 }
 
