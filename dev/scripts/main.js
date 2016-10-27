@@ -22,8 +22,6 @@ appSong.usersLocation = function(city) {
     appSong.locationPicked = $('#autocomplete').val();
     //take the location that the user entered and split into an array
     appSong.locationPicked = appSong.locationPicked.split(', ')
-
-    console.log('what the user entered', appSong.locationPicked)
     
     //assigning the answers to different objects
 
@@ -52,8 +50,6 @@ appSong.getLocations = function(){
  var autocomplete = new google.maps.places.Autocomplete(
     (document.getElementById('autocomplete')),
      {types: ['geocode']});
- console.log("testing", autocomplete)
-
 } //appSong.getLocations
 
 
@@ -73,7 +69,7 @@ appSong.getMatchingCities = function(city) {
     metroLocation = metroLocation.resultsPage.results.location
     //gives appSong.displayLocation the results
     appSong.matchLocations(metroLocation);
-    console.log('appSong.getMatchingCities', metroLocation);
+    //console.log('appSong.getMatchingCities', metroLocation);
   });
 }
 
@@ -81,7 +77,7 @@ appSong.getMatchingCities = function(city) {
 //STEP 3
 appSong.matchLocations = function(matchLocations) {
 
-  console.log('matchLocations', matchLocations)
+  //console.log('matchLocations', matchLocations)
 
   for(var i = 0; i <= matchLocations.length; i = i + 1){
 
@@ -99,7 +95,7 @@ appSong.matchLocations = function(matchLocations) {
 //STEP 4
 // returns the metro ID of the user selected city
 appSong.getMetroId = function(metroID) {
-  console.log('appSong.getMetroId', metroID)
+  //console.log('appSong.getMetroId', metroID)
   $.ajax ({
     url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
     method: 'get',
@@ -110,47 +106,63 @@ appSong.getMetroId = function(metroID) {
   }).then(function(bandReturn) {
     bandReturn = bandReturn.resultsPage.results.event
     appSong.displayConcerts(bandReturn)
-    console.log('return bands playing', bandReturn)
+    //console.log('return bands playing', bandReturn)
   });
 }
 
 
 //STEP 5
 appSong.displayConcerts = function(concertsPlaying) {
+  console.log('concertsPlaying', concertsPlaying)
 //take the concert results and display the concert name and bands involved at the concert
   
   if (concertsPlaying.length != 0){
+
     //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
     //$('.theConcerts').append($locationPicked);
+  for (var i = 0; i < concertsPlaying.length; i = i + 1){
+    //show only the next 7 days of concerts
+    //take the current date
+    var today = new Date();
     
-    concertsPlaying.forEach(function(concertInfo) {
+    //and add 7 days
+    var oneWeek = today.setDate(today.getDate() + 7);
+    console.log('1 week', oneWeek)
 
-      var $concertResults = $('<article>').addClass('concertResults');
-      var $concertName = $('<h3>').text(concertInfo.displayName);
-      var $bandLists = $('<div>').addClass('bandButtons');
-      
-      $concertResults.append($concertName, $bandLists);
+    var concertDate = +(new Date(concertsPlaying[i].start.date))
+    console.log('concert date', concertDate)
+  
+    //only show those concerts with date in 7 days (compared to the date of the concert) 
+    if (concertDate < oneWeek) {
+      concertsPlaying.forEach(function(concertInfo) {
 
-      var $bandFilter = concertInfo.performance;
+        var $concertResults = $('<article>').addClass('concertResults');
+        var $concertName = $('<h3>').text(concertInfo.displayName);
+        var $bandLists = $('<div>').addClass('bandButtons');
+        
+        $concertResults.append($concertName, $bandLists);
 
-      $bandFilter.forEach(function(bandFilter) {
-        var $bandNames = $('<input>').attr({
-            value: bandFilter.displayName,
-            name: "bandNames",
-            type: "radio",
-            id: bandFilter.displayName
-          });
-        var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
-            for: bandFilter.displayName
-          });
+        var $bandFilter = concertInfo.performance;
 
-        $bandLists.append($bandNames, $bandLabel);
+        $bandFilter.forEach(function(bandFilter) {
+          var $bandNames = $('<input>').attr({
+              value: bandFilter.displayName,
+              name: "bandNames",
+              type: "radio",
+              id: bandFilter.displayName
+            });
+          var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
+              for: bandFilter.displayName
+            });
 
-      })
+          $bandLists.append($bandNames, $bandLabel);
 
-      $('.theConcerts').append($concertResults);
-
-    });
+        })
+        $('.theConcerts').append($concertResults);
+      });
+    }
+  }
+    
     
   } else if (concertsPlaying.length === 0) {
     $('.noconcertsresults').fadeIn();
@@ -169,7 +181,7 @@ appSong.matchBands = function(matchBands) {
     appSong.bandPicked = $('input[type=radio]:checked').val()
 
     appSong.getSpotify(appSong.bandPicked)
-    console.log('bandPicked', appSong.bandPicked)
+    //console.log('bandPicked', appSong.bandPicked)
     $('.bandSelection').hide();
     $('.spotifyResults').show();
   });
@@ -191,7 +203,7 @@ appSong.getSpotify = function(artisit) {
     }
   }).then(function(playlists) {
     playlists = playlists.playlists.items
-    console.log('Spotfiy', playlists)
+    //console.log('Spotfiy', playlists)
     appSong.displayPlaylist(playlists)
   });
 } //appSong.getSpotify
@@ -199,7 +211,7 @@ appSong.getSpotify = function(artisit) {
 //STEP 8 - display playlists
 appSong.displayPlaylist = function(displayPlaylist) {
 
-  console.log('displayPlaylist', displayPlaylist)
+  //console.log('displayPlaylist', displayPlaylist)
 
   if (displayPlaylist.length != 0) {
   //if there are matching playlists - show them
@@ -219,8 +231,6 @@ appSong.displayPlaylist = function(displayPlaylist) {
         frameborder: '0', 
         allowtransparency: 'true'
       });
-
-//<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify_canada%3Aplaylist%3A21MItD3dSrw9I7H5hiVwuk" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 
       $playlistResult.append($actualPlaylist);  
 
