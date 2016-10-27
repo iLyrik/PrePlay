@@ -152,13 +152,15 @@ appSong.displayConcerts = function(concertsPlaying) {
 //STEP 7 - take band picked
 appSong.matchBands = function(matchBands) {
 
-  $('.concertResults').on('submit', function(e) {
+  $('.theConcerts').on('submit', function(e) {
     e.preventDefault();
-    var bandPicked = $('input[type=radio]').val()
+    var bandPicked = $('input[type=radio]:checked').val()
 
+    appSong.getSpotify(bandPicked)
+    console.log('bandPicked', bandPicked)
   });
 
-  appSong.getSpotify(bandPicked)
+
 
 } //appSong.matchBands
 
@@ -169,37 +171,47 @@ appSong.getSpotify = function(artisit) {
     method: 'GET',
     dataType: 'json',
     data: {
+      client_id: 'd3dc1222c5184993bddad0fa6b53fbf4',
+      client_secret: 'c6461a15139446c6aea0b5854cd1f8ce',
       q: artisit,
       type: 'playlist',
-      limit: 3,
-      client_id: 'd3dc1222c5184993bddad0fa6b53fbf4',
-      client_secret: 'c6461a15139446c6aea0b5854cd1f8ce'
+      limit: 3
     }
   }).then(function(playlists) {
-    playlists = playlists
+    playlists = playlists.playlists.items
     console.log('Spotfiy', playlists)
+    appSong.displayPlaylist(playlists)
   });
 } //appSong.getSpotify
 
 //STEP 9 - display playlist 
-// appSong.displayPlaylist = function(displayPlaylist) {
+appSong.displayPlaylist = function(displayPlaylist) {
 
-//   displayPlaylist.forEach(function(showingPlaylists) {
+  displayPlaylist.forEach(function(showingPlaylists) {
+    var $playlistsDivs = $('<div>').addClass('allPlaylists');
+    var $playlistResult = $('<article>').addClass('playlist');
 
-//   })
+    $playlistsDivs.append($playlistResult);
 
-// } //displayPlaylist
-// 
+    for(var i = 1; i <= showingPlaylists.length; i = i + 1){
+      var $playlistAlbum = $('<img>').attr('src', showingPlaylists.images[1].url);
+      var $actualPlaylist = $('<div>').text(showingPlaylists.tracks.href);
 
-//take the matching metro id and enter into getMetroID
+      $playlistResult.append($playlistAlbum, $actualPlaylist)   
+    }
+
+    $('.spotifyResults').append($playlistsDivs)
+
+  })
+
+} //displayPlaylist
+
 
 //then display the concerts in that metro id
 appSong.init = function() {
   appSong.getLocations();
   appSong.usersLocation();
 }
-
-
 
 $(function() {
   appSong.init()
@@ -214,36 +226,4 @@ $(function() {
     $('.search').fadeIn();
   })
 });
-
-
-//STEP 3 --- might not need -- filtering auto complete
-// appSong.displayLocation = function(displayLocation) {
-// //display matching cities and have user select the correct one 
-// //displays the cities that match what the user inputting
-//   //$('.cities').empty();
-
-// //creates the radio buttons
-// //take the results of what they've inputted and use it to find the metroID
-// //creates a radio button for each possible result based on the name of the location
-
-//   displayLocation.forEach(function(locationChoice) {
-//     var $radioButtonsCity = $('<input>').attr({
-//       value: locationChoice.metroArea.id, 
-//       name: "locationChoice", 
-//       type: "radio",
-//       id: locationChoice.metroArea.id
-//     })
-//     var $radioLabel = $('<label>').text(locationChoice.city.displayName + ', ' + locationChoice.city.country.displayName).attr({
-//       for: locationChoice.metroArea.id
-//     })
-// // appends the options to the page in the form of radio buttons
-//     $('.cities').append($radioButtonsCity, $radioLabel);
-
-//   });
-
-//   console.log('drop down cities', displayLocation)
-// // takes the results from the location search and passes it along to the concert search
-//   appSong.findConcerts(displayLocation)
-// }
-
 
