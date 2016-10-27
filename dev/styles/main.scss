@@ -39,8 +39,14 @@ header {
 	}
 }
 
+h4 {
+  font-family: $headerText;
+  font-size: 20px;
+}
+
 .logo {
 	position: absolute;
+  cursor: pointer;
 	top: 10px;
 	left: 80px;
 	img {
@@ -67,6 +73,10 @@ input[type=submit] {
 	h2 {
 		font-size: 18px;
 	}
+}
+
+.noplaylistresults, .noconcertsresults {
+  display: none;
 }
 
 @import "_media";
