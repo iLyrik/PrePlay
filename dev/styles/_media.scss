@@ -1,5 +1,38 @@
 
-@media (max-width: ) {
 
 
+
+
+
+
+/*footer*/
+@media (max-width: 915px) {
+	body {
+	height: 113vh;
+	}
+	footer {
+		height: 110px;
+		flex-direction: column;
+		bottom: -69px;
+		padding: 0 45px;
+		.credit {
+			text-align: center;
+			ul {
+				padding: 0;
+			}
+		}
+		.contactUs {
+			h6 {
+				display: none;
+			}
+			ul {
+				flex-direction: column;
+				li {
+					text-align: center;
+					padding: 0;
+				}
+			}
+		}
+	}
 }
+
