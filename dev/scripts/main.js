@@ -13,6 +13,9 @@ appSong.usersLocation = function(city) {
   $('.locationInput').on('submit', function(e) {
     $('.cities').show();
     e.preventDefault();
+    //move from the search section to the concerts section using fade
+    $('.search').fadeOut();
+    $('.bandSelection').fadeIn();
     var location = $('#autocomplete').val();
     //take the location that the user entered and split into an array
     location = location.split(', ')
@@ -103,15 +106,14 @@ appSong.getMetroId = function(metroID) {
 //STEP 5
 // appSong.findConcerts = function(findConcerts) {
 // // find concerts that are in the same metroID area as was indicated based on above
-//   $('.locationInput').on('submit', function(e) {
+//   $('.findConcertsBtn').on('click', function(e) {
 //     e.preventDefault();
-//     //move from the search section to the concerts section using fade
-//     $('.locationSearch').fadeOut();
-//     $('.bandSelection').fadeIn();
+
 //     // when the user submits the location (the 'specific Toronto', take the value of the radio button
 //     //put it into the metroID search to return concert listings within that area
-//     var usersMetroId = $("input[type=radio]").val()
-//     console.log("users metroID", usersMetroId)
+//     var usersMetroId = $('input[type=radio]').val()
+//     //console.log('users metroID', usersMetroId)
+
 //     appSong.getMetroId(usersMetroId);
 //   });
 // }
@@ -222,7 +224,7 @@ $(function() {
   $('.search').hide();
   $('.bandSelection').hide();
   $('.spotifyResults').hide();
- 
+
   //on click of the startBtn, hide the header page and show the search page
   $('.startBtn').on('click', function(){
     $('.titlePage').fadeOut();
