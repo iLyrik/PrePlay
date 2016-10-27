@@ -126,8 +126,9 @@ appSong.displayConcerts = function(concertsPlaying) {
 
       var $concertResults = $('<article>').addClass('concertResults')
       var $concertName = $('<h3>').text(concertInfo.displayName)
+      var $bandLists = $('<div>').addClass('bandButtons')
       
-      $concertResults.append($concertName)
+      $concertResults.append($concertName, $bandLists)
 
       var $bandFilter = concertInfo.performance
 
@@ -142,7 +143,7 @@ appSong.displayConcerts = function(concertsPlaying) {
             for: bandFilter.displayName
           });
 
-        $concertResults.append($bandNames, $bandLabel)
+        $bandLists.append($bandNames, $bandLabel)
 
       })
 
@@ -202,19 +203,23 @@ appSong.displayPlaylist = function(displayPlaylist) {
   if (displayPlaylist.length != 0) {
   //if there are matching playlists - show them
 
-    //remove results that have a style of null
-    displayPlaylist = displayPlaylist.filter(function(removeNoImage) {
-      return removeNoImage.images !== null;
-    });
-
-    var $bandPicked = $('<h2>').text(appSong.bandPicked)
+    var $bandPicked = $('<h2>').text(appSong.bandPicked);
 
     displayPlaylist.forEach(function(showingPlaylists) {
       var $playlistResult = $('<article>').addClass('playlist');
-      var $playlistAlbum = $('<img>').attr({src: showingPlaylists.images[0].url});
-      var $actualPlaylist = $('<div>').text(showingPlaylists.tracks.href);
+      var playlistURI = showingPlaylists.uri
+      console.log(playlistURI)
+      var $actualPlaylist = $('<iframe>').attr({
+        src: `https://embed.spotify.com/?uri=${playlistURI}`,
+        width: '300', 
+        height:'380', 
+        frameborder: '0', 
+        allowtransparency: 'true'
+      });
 
-      $playlistResult.append($playlistAlbum, $actualPlaylist);  
+//<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify_canada%3Aplaylist%3A21MItD3dSrw9I7H5hiVwuk" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+
+      $playlistResult.append($actualPlaylist);  
 
       $('.allPlayLists').append($bandPicked, $playlistResult);
 
