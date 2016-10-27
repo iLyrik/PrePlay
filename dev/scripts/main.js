@@ -118,35 +118,42 @@ appSong.getMetroId = function(metroID) {
 //STEP 5
 appSong.displayConcerts = function(concertsPlaying) {
 //take the concert results and display the concert name and bands involved at the concert
-  var $locationPicked = $('<h2>').text(appSong.locationPicked)
   
-  concertsPlaying.forEach(function(concertInfo) {
-
-    var $concertResults = $('<article>').addClass('concertResults')
-    var $concertName = $('<h3>').text(concertInfo.displayName)
+  if (concertsPlaying.length != 0){
+    var $locationPicked = $('<h2>').text(appSong.locationPicked)
     
-    $concertResults.append($concertName)
+    concertsPlaying.forEach(function(concertInfo) {
 
-    var $bandFilter = concertInfo.performance
+      var $concertResults = $('<article>').addClass('concertResults')
+      var $concertName = $('<h3>').text(concertInfo.displayName)
+      
+      $concertResults.append($concertName)
 
-    $bandFilter.forEach(function(bandFilter) {
-      var $bandNames = $('<input>').attr({
-          value: bandFilter.displayName,
-          name: "bandNames",
-          type: "radio",
-          id: bandFilter.displayName
-        });
-      var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
-          for: bandFilter.displayName
-        });
+      var $bandFilter = concertInfo.performance
 
-      $concertResults.append($bandNames, $bandLabel)
+      $bandFilter.forEach(function(bandFilter) {
+        var $bandNames = $('<input>').attr({
+            value: bandFilter.displayName,
+            name: "bandNames",
+            type: "radio",
+            id: bandFilter.displayName
+          });
+        var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
+            for: bandFilter.displayName
+          });
 
-    })
+        $concertResults.append($bandNames, $bandLabel)
 
-    $('.theConcerts').append($locationPicked, $concertResults)
+      })
 
-  });
+      $('.theConcerts').append($locationPicked, $concertResults)
+
+    });
+    
+  } else if (concertsPlaying.length === 0) {
+    $('.noconcertsresults').fadeIn();
+  }
+
 
   appSong.matchBands(concertsPlaying)
 
@@ -190,23 +197,35 @@ appSong.getSpotify = function(artisit) {
 //STEP 8 - display playlists
 appSong.displayPlaylist = function(displayPlaylist) {
 
-  //remove results that have a style of null
-  displayPlaylist = displayPlaylist.filter(function(removeNoImage) {
-    return removeNoImage.images !== null;
-  });
+  console.log('displayPlaylist', displayPlaylist)
 
-  var $bandPicked = $('<h2>').text(appSong.bandPicked)
+  if (displayPlaylist.length != 0) {
+  //if there are matching playlists - show them
 
-  displayPlaylist.forEach(function(showingPlaylists) {
-    var $playlistResult = $('<article>').addClass('playlist');
-    var $playlistAlbum = $('<img>').attr({src: showingPlaylists.images[0].url});
-    var $actualPlaylist = $('<div>').text(showingPlaylists.tracks.href);
+    //remove results that have a style of null
+    displayPlaylist = displayPlaylist.filter(function(removeNoImage) {
+      return removeNoImage.images !== null;
+    });
 
-    $playlistResult.append($playlistAlbum, $actualPlaylist);  
+    var $bandPicked = $('<h2>').text(appSong.bandPicked)
 
-    $('.allPlayLists').append($bandPicked, $playlistResult);
+    displayPlaylist.forEach(function(showingPlaylists) {
+      var $playlistResult = $('<article>').addClass('playlist');
+      var $playlistAlbum = $('<img>').attr({src: showingPlaylists.images[0].url});
+      var $actualPlaylist = $('<div>').text(showingPlaylists.tracks.href);
 
-  })
+      $playlistResult.append($playlistAlbum, $actualPlaylist);  
+
+      $('.allPlayLists').append($bandPicked, $playlistResult);
+
+    })
+
+  } else if (displayPlaylist.length === 0) {
+    //if there are no results show .noresults
+
+    $('.noplaylistresults').fadeIn();
+  }
+
 
 } //displayPlaylist
 
