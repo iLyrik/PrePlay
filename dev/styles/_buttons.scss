@@ -14,3 +14,21 @@ button {
 	}
 }
 
+input[type="submit"] {
+	background-color: $orange;
+	border: none;
+	border-radius: 3px;
+	padding: 10px;
+	font-family: $headerText;
+	text-align: center;
+	font-size: 15px;
+	color: $purple;
+	margin-top: 20px;
+	transition: ease all .4s;
+	text-transform: uppercase;
+	&:hover {
+		background-color: $purple;
+		color: $orange;
+	}
+}
+
