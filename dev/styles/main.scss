@@ -10,6 +10,7 @@
 body {
 	background-image: linear-gradient(rgba(5,5,5,.6),rgba(5,5,5,.6)),url(../../assets/festival.jpg);
 	background-size: cover;
+	background-repeat: no-repeat;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -34,6 +35,7 @@ header {
 	}
 	.mainLogo {
 		width: 75%;
+		max-width: 700px;
 	}
 }
 
