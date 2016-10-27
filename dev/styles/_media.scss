@@ -21,6 +21,31 @@
 			}
 		}
 	}
+	.logo {
+		left: 40px;
+	}
+}
+
+@media (max-width: 500px) {
+	.search {
+		.locationInput {
+				.searchBar {
+				width: 300px;
+			}	
+		}
+	}
+	.concertResults {
+		text-align: center;
+	}
+	.bandButtons {
+	    justify-content: center;
+	    flex-direction: column;
+	}
+	.bandSelection {
+		.modal {
+		    margin-top: -50px
+		}
+	}
 }
 
 @media (max-width: 450px) {
@@ -41,6 +66,33 @@
 	}
 	footer {
 		bottom: 0px;
+	}
+	.locationInput {
+		margin-top: -40px;
+	}
+	.bandSelection {
+		.modal {
+		    margin-top: 40px;
+		    height: 52vh;
+		    position: relative;
+		    input[type="submit"] {
+	    	    left: 90%;
+	    	    top: -70px;
+	    	    height: 40px;
+		    }
+		}
+		h3 {
+			font-size: 14px;
+		}
+		.bandButtons {
+			label {
+				padding: 5px 10px;
+				margin-bottom: 5px;
+			}
+		}
+	}
+	.concertResults {
+		padding-bottom: 0;
 	}
 }
 
