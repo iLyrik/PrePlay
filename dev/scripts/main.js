@@ -129,20 +129,20 @@ appSong.displayConcerts = function(concertsPlaying) {
 
     var $bandFilter = concertInfo.performance
 
-      $bandFilter.forEach(function(bandFilter) {
-        var $bandNames = $('<input>').attr({
-            value: bandFilter.displayName,
-            name: "bandNames",
-            type: "radio",
-            id: bandFilter.displayName
-          });
-        var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
-            for: bandFilter.displayName
-          });
+    $bandFilter.forEach(function(bandFilter) {
+      var $bandNames = $('<input>').attr({
+          value: bandFilter.displayName,
+          name: "bandNames",
+          type: "radio",
+          id: bandFilter.displayName
+        });
+      var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
+          for: bandFilter.displayName
+        });
 
-        $concertResults.append($bandNames, $bandLabel)
+      $concertResults.append($bandNames, $bandLabel)
 
-      })
+    })
 
     $('.theConcerts').append($locationPicked, $concertResults)
 
@@ -187,26 +187,24 @@ appSong.getSpotify = function(artisit) {
   });
 } //appSong.getSpotify
 
-//STEP 8 - display playlist 
+//STEP 8 - display playlists
 appSong.displayPlaylist = function(displayPlaylist) {
 
+  //remove results that have a style of null
+  displayPlaylist = displayPlaylist.filter(function(removeNoImage) {
+    return removeNoImage.images !== null;
+  });
+
   var $bandPicked = $('<h2>').text(appSong.bandPicked)
-  var $playlistsDiv = $('<div>').addClass('allPlaylists');
 
   displayPlaylist.forEach(function(showingPlaylists) {
     var $playlistResult = $('<article>').addClass('playlist');
+    var $playlistAlbum = $('<img>').attr({src: showingPlaylists.images[0].url});
+    var $actualPlaylist = $('<div>').text(showingPlaylists.tracks.href);
 
-    for(var i = 1; i <= showingPlaylists.length; i = i + 1){
-      var $playlistAlbum = $('<img>').attr('src', showingPlaylists[i].images[1].url);
-      var $actualPlaylist = $('<a>').attr('href', showingPlaylists[i].tracks.href);
+    $playlistResult.append($playlistAlbum, $actualPlaylist);  
 
-      console.log(showingPlaylists[i].tracks.href)
-
-      $playlistResult.append($playlistAlbum, $actualPlaylist)   
-      $playlistsDiv.append($bandPicked, $playlistResult);
-    }
-
-    $('.spotifyResults').append($playlistsDiv)
+    $('.allPlayLists').append($bandPicked, $playlistResult);
 
   })
 
@@ -231,5 +229,11 @@ $(function() {
     $('.titlePage').fadeOut();
     $('.search').fadeIn();
   })
+
+//when someone clicks on the a tag for logo, refresh the page - go back to start
+  $('.logo').on('click', function() {
+    window.location.reload();
+    setTimeout(window.location.reload);
+  });
 });
 
