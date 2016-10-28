@@ -109,6 +109,9 @@ input[type=submit] {
   }
 }
 
-
+.findAnother {
+	display: flex;
+	justify-content: center;
+}
 
 @import "_media";
