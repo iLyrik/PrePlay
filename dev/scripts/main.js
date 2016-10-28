@@ -17,11 +17,11 @@ appSong.usersLocation = function (city) {
   $('.locationInput').on('submit', function(e) {
     // load screen
     $('#loadScreen').show();
+    $('.cities').show();
     $('.cities').ready(function() {
-      $('#loadScreen').fadeOut();
+      $('#loadScreen').delay(1000).fadeOut();
     });
 
-    $('.cities').show();
     e.preventDefault();
     //move from the search section to the concerts section using fade
     $('.search').fadeOut();
@@ -199,7 +199,7 @@ appSong.matchBands = function (matchBands) {
     $('.spotifyResults').show();
 
     $('.lists').ready(function() {
-      $('#loadScreen').delay(2000).fadeOut(2000);
+      $('#loadScreen').delay(2500).fadeOut(1500);
     });
   });
 }; //appSong.matchBands
@@ -290,8 +290,8 @@ $(function () {
     $('.search').fadeIn();
   });
 
-  //when someone clicks on the a tag for logo, refresh the page - go back to start
-  $('.logo').on('click', function () {
+  //when user clicks on the logo or the reset button, refresh the page - go back to start
+  $('.reset').on('click', function () {
     window.location.reload();
     setTimeout(window.location.reload);
   });
