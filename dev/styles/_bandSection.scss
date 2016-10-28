@@ -9,17 +9,8 @@
 
 .bandSelection {
 	.modal {
-		display: flex;
-		flex-wrap: wrap;
 		width: 75%;
-		min-width: 280px;
-		height: 60vh;
-		background: rgba(198,197,185, .9);
-		margin: 0 auto;
 		border: 2px solid $purple;
-		border-radius: 3px;
-		padding: 10px;
-		color: $purple;
 		input[type="radio"]{
 			display: none;
 		}
@@ -28,15 +19,6 @@
 		    bottom: 85px;
 		    left: 50%;
 		    transform: translateX(-50%);
-		}
-		h3 {
-			font-family: $headerText;
-		}
-		.overflow {
-			width: 100%;
-			overflow-y: scroll;
-			display: flex;
-			flex-wrap: wrap;
 		}
 	}
 }
