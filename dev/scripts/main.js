@@ -60,12 +60,15 @@ appSong.getMatchingCities = function (city) {
   //console.log('getMatchingCities', city)
   $.ajax({
     // console.log('appSong.getMetro', arguments);
-    url: 'http://api.songkick.com/api/3.0/search/locations.json',
+    url: 'http://proxy.hackeryou.com',
     method: 'GET',
     dataType: 'json',
     data: {
-      query: city,
-      apikey: 'hHSjLHKTmsfByvxU'
+      reqUrl: 'http://api.songkick.com/api/3.0/search/locations.json',
+      params: {
+        query: city,
+        apikey: 'hHSjLHKTmsfByvxU'
+      }
     }
   }).then(function (metroLocation) {
     metroLocation = metroLocation.resultsPage.results.location;
@@ -108,12 +111,15 @@ appSong.matchLocations = function (matchLocations) {
 // returns the concerts for the matching metro ID of the user selected city
 appSong.getConcerts = function(metroID,pageNumber) {
   return $.ajax({
-    url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
-    method: 'get',
+    url: 'http://proxy.hackeryou.com',
+    method: 'GET',
     dataType: 'json',
     data: {
-      page: pageNumber,
-      apikey: 'hHSjLHKTmsfByvxU'
+      reqUrl: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
+      params: {
+        page: pageNumber,
+        apikey: 'hHSjLHKTmsfByvxU'
+      }
     }
   });
 }
