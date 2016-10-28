@@ -186,6 +186,15 @@ appSong.matchBands = function(matchBands) {
     appSong.getSpotify(appSong.bandPicked)
     //console.log('bandPicked', appSong.bandPicked)
     $('.bandSelection').hide();
+    
+    // show loading screen, then remove loading screen when iframes are loaded
+    $('#loadScreen').show();
+    $('.spotifyResults').show();
+    // $('#loadScreen').fadeOut(5000);
+    $('.lists').ready(function() {
+      $('#loadScreen').fadeOut(5000);
+    });
+    
     $('.spotifyResults').show();
   });
 
@@ -232,7 +241,8 @@ appSong.displayPlaylist = function(displayPlaylist) {
         width: '300', 
         height:'380', 
         frameborder: '0', 
-        allowtransparency: 'true'
+        allowtransparency: 'true',
+        class: 'lists'
       });
 
       $playlistResult.append($actualPlaylist);  
