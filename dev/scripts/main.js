@@ -17,11 +17,11 @@ appSong.usersLocation = function (city) {
   $('.locationInput').on('submit', function(e) {
     // load screen
     $('#loadScreen').show();
+    $('.cities').show();
     $('.cities').ready(function() {
-      $('#loadScreen').fadeOut();
+      $('#loadScreen').delay(1000).fadeOut();
     });
 
-    $('.cities').show();
     e.preventDefault();
     //move from the search section to the concerts section using fade
     $('.search').fadeOut();
@@ -185,7 +185,7 @@ appSong.displayConcerts = function(concertsPlaying) {
 
 //STEP 6 - take band picked
 appSong.matchBands = function (matchBands) {
-
+//console.log('appSong.matchBands', matchBands)
   $('.theConcerts').on('submit', function (e) {
     e.preventDefault();
     appSong.bandPicked = $('input[type=radio]:checked').val();
@@ -199,13 +199,14 @@ appSong.matchBands = function (matchBands) {
     $('.spotifyResults').show();
 
     $('.lists').ready(function() {
-      $('#loadScreen').delay(2000).fadeOut(2000);
+      $('#loadScreen').delay(1500).fadeOut(2000);
     });
   });
 }; //appSong.matchBands
 
 //STEP 7 - match bands to spotify
 appSong.getSpotify = function (artisit) {
+//console.log('appSong.getSpotify', artisit)
   $.ajax({
     url: 'https://api.spotify.com/v1/search',
     method: 'GET',
@@ -226,7 +227,7 @@ appSong.getSpotify = function (artisit) {
 
 //STEP 8 - display playlists
 appSong.displayPlaylist = function (displayPlaylist) {
-
+//console.log('appSong.displayPlaylist', displayPlaylist)
   //console.log('displayPlaylist', displayPlaylist)
 
   if (displayPlaylist.length != 0) {
@@ -237,7 +238,7 @@ appSong.displayPlaylist = function (displayPlaylist) {
     var $overflow = $('<div>').addClass('overflow')
     var $allPlayLists = $('<div>').addClass('allPlayLists')
 
-    $('.allPlayLists').append($bandPicked);
+    $($allPlayLists).append($bandPicked);
 
     displayPlaylist.forEach(function (showingPlaylists) {
       var $playlistResult = $('<article>').addClass('playlist');
@@ -253,6 +254,7 @@ appSong.displayPlaylist = function (displayPlaylist) {
       });
 
       $playlistResult.append($actualPlaylist);
+      $allPlayLists.append($playlistResult);
       $overflow.append($allPlayLists);
       $modal.append($overflow);
       $('.spotifyResults').append($modal);
@@ -290,8 +292,8 @@ $(function () {
     $('.search').fadeIn();
   });
 
-  //when someone clicks on the a tag for logo, refresh the page - go back to start
-  $('.logo').on('click', function () {
+  //when user clicks on the logo or the reset button, refresh the page - go back to start
+  $('.reset').on('click', function () {
     window.location.reload();
     setTimeout(window.location.reload);
   });
