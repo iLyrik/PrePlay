@@ -171,12 +171,13 @@ appSong.matchBands = function(matchBands) {
     console.log('bandPicked', appSong.bandPicked)
     $('.bandSelection').hide();
     
-    $('#loadScreen').fadeIn();
+    // show loading screen, then remove loading screen when iframes are loaded
+    $('#loadScreen').show();
     $('.spotifyResults').show();
-    $('#loadScreen').fadeOut(3500);
-    // $('.spotifyResults').on('load', function() {
-    //   $('#loadScreen').hide();
-    // });
+    // $('#loadScreen').fadeOut(5000);
+    $('.lists').ready(function() {
+      $('#loadScreen').fadeOut(5000);
+    });
     
   });
 
@@ -221,7 +222,8 @@ appSong.displayPlaylist = function(displayPlaylist) {
         width: '300', 
         height:'380', 
         frameborder: '0', 
-        allowtransparency: 'true'
+        allowtransparency: 'true',
+        class: 'lists'
       });
 
 //<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify_canada%3Aplaylist%3A21MItD3dSrw9I7H5hiVwuk" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
