@@ -62,7 +62,7 @@ appSong.getMatchingCities = function (city) {
   //console.log('getMatchingCities', city)
   $.ajax({
     // console.log('appSong.getMetro', arguments);
-    url: 'http://api.songkick.com/api/3.0/search/locations.json',
+    url: 'https://api.songkick.com/api/3.0/search/locations.json',
     method: 'GET',
     dataType: 'json',
     data: {
@@ -104,7 +104,7 @@ appSong.matchLocations = function (matchLocations) {
 // returns the concerts for the matching metro ID of the user selected city
 appSong.getConcerts = function (metroID, pageNumber) {
   return $.ajax({
-    url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
+    url: 'https://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
     method: 'get',
     dataType: 'json',
     data: {
