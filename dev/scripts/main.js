@@ -124,7 +124,10 @@ appSong.displayConcerts = function(concertsPlaying) {
 if (concertsPlaying.length != 0){
 
     //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
-    //$('.theConcerts').append($locationPicked);
+    
+    var $howToUse = $('<h3>').text('Here is a list of concerts near you in the next 7 days. Please click on a band name to see related playlists')
+    $('.theConcerts').append($howToUse);
+    
     //show only the next 7 days of concerts
     //take the current date
     var today = new Date();
@@ -167,9 +170,6 @@ if (concertsPlaying.length != 0){
         $('.theConcerts').append($concertResults); 
       }
     });
-    
-    
-    
     
   } else if (concertsPlaying.length === 0) {
     $('.noconcertsresults').fadeIn();
@@ -230,6 +230,9 @@ appSong.displayPlaylist = function (displayPlaylist) {
     //if there are matching playlists - show them
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
+    var $modal = $('<article>').addClass('modal')
+    var $overflow = $('<div>').addClass('overflow')
+    var $allPlayLists = $('<div>').addClass('allPlayLists')
 
     $('.allPlayLists').append($bandPicked);
 
@@ -247,8 +250,9 @@ appSong.displayPlaylist = function (displayPlaylist) {
       });
 
       $playlistResult.append($actualPlaylist);
-
-      $('.allPlayLists').append($playlistResult);
+      $overflow.append($allPlayLists);
+      $modal.append($overflow);
+      $('.spotifyResults').append($modal);
     });
   } else if (displayPlaylist.length === 0) {
     //if there are no results show .noresults
