@@ -185,7 +185,7 @@ appSong.displayConcerts = function(concertsPlaying) {
 
 //STEP 6 - take band picked
 appSong.matchBands = function (matchBands) {
-console.log('appSong.matchBands', matchBands)
+//console.log('appSong.matchBands', matchBands)
   $('.theConcerts').on('submit', function (e) {
     e.preventDefault();
     appSong.bandPicked = $('input[type=radio]:checked').val();
@@ -206,7 +206,7 @@ console.log('appSong.matchBands', matchBands)
 
 //STEP 7 - match bands to spotify
 appSong.getSpotify = function (artisit) {
-console.log('appSong.getSpotify', artisit)
+//console.log('appSong.getSpotify', artisit)
   $.ajax({
     url: 'https://api.spotify.com/v1/search',
     method: 'GET',
@@ -227,7 +227,7 @@ console.log('appSong.getSpotify', artisit)
 
 //STEP 8 - display playlists
 appSong.displayPlaylist = function (displayPlaylist) {
-console.log('appSong.displayPlaylist', displayPlaylist)
+//console.log('appSong.displayPlaylist', displayPlaylist)
   //console.log('displayPlaylist', displayPlaylist)
 
   if (displayPlaylist.length != 0) {
