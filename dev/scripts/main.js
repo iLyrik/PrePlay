@@ -1,8 +1,5 @@
 var appSong = {};
 
-
-////coool 
-
 appSong.city = '';
 appSong.state = '';
 appSong.country = '';
@@ -13,10 +10,10 @@ appSong.bandPicked = '';
 //this is the start of everything
 //STEP 1
 //when user enters city in search field, take value and search in appSong.getMatchingCities
-appSong.usersLocation = function(city) {
-    $('.cities').hide();
+appSong.usersLocation = function (city) {
+  $('.cities').hide();
 
-  $('.locationInput').on('submit', function(e) {
+  $('.locationInput').on('submit', function (e) {
     $('.cities').show();
     e.preventDefault();
     //move from the search section to the concerts section using fade
@@ -24,42 +21,36 @@ appSong.usersLocation = function(city) {
     $('.bandSelection').fadeIn();
     appSong.locationPicked = $('#autocomplete').val();
     //take the location that the user entered and split into an array
-    appSong.locationPicked = appSong.locationPicked.split(', ')
-    
+    appSong.locationPicked = appSong.locationPicked.split(', ');
+
     //assigning the answers to different objects
 
     if (appSong.locationPicked.length === 3) {
-      appSong.city = appSong.locationPicked[0]
-      appSong.state = appSong.locationPicked[1]
-      appSong.country = appSong.locationPicked[2]
+      appSong.city = appSong.locationPicked[0];
+      appSong.state = appSong.locationPicked[1];
+      appSong.country = appSong.locationPicked[2];
 
-      appSong.getMatchingCities(appSong.city)
-
+      appSong.getMatchingCities(appSong.city);
     } else if (appSong.locationPicked.length === 2) {
-      appSong.city = appSong.locationPicked[0]
-      appSong.country =appSong.locationPicked[1]
+      appSong.city = appSong.locationPicked[0];
+      appSong.country = appSong.locationPicked[1];
 
-      appSong.getMatchingCities(appSong.city)
-
+      appSong.getMatchingCities(appSong.city);
     }
-
   });
-
-} //appSong.usersLocation
+}; //appSong.usersLocation
 
 
 //STEP 1A autocomplete the input for city selection
-appSong.getLocations = function(){
- var autocomplete = new google.maps.places.Autocomplete(
-    (document.getElementById('autocomplete')),
-     {types: ['geocode']});
-} //appSong.getLocations
+appSong.getLocations = function () {
+  var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), { types: ['geocode'] });
+}; //appSong.getLocations
 
 
 //STEP 2
 //returns list of cities that match query name
-appSong.getMatchingCities = function(city) {
-  $.ajax ({
+appSong.getMatchingCities = function (city) {
+  $.ajax({
     // console.log('appSong.getMetro', arguments);
     url: 'http://api.songkick.com/api/3.0/search/locations.json',
     method: 'GET',
@@ -68,77 +59,83 @@ appSong.getMatchingCities = function(city) {
       query: city,
       apikey: 'hHSjLHKTmsfByvxU'
     }
-  }).then(function(metroLocation) {
-    metroLocation = metroLocation.resultsPage.results.location
-    //gives appSong.displayLocation the results
+  }).then(function (metroLocation) {
+    metroLocation = metroLocation.resultsPage.results.location;
+    //gives appSong.matchLocation the results
     appSong.matchLocations(metroLocation);
     //console.log('appSong.getMatchingCities', metroLocation);
   });
-}
-
+};
 
 //STEP 3
-appSong.matchLocations = function(matchLocations) {
+appSong.matchLocations = function (matchLocations) {
 
-  //console.log('matchLocations', matchLocations)
+  console.log('matchLocations', matchLocations)
 
-  for(var i = 0; i <= matchLocations.length; i = i + 1){
+  for (var i = 0; i <= matchLocations.length; i = i + 1) {
 
     if (appSong.city === matchLocations[i].city.displayName && appSong.country === matchLocations[i].city.country.displayName) {
-      var metroID = matchLocations[i].metroArea.id
-      
-      appSong.getMetroId(metroID)
+      var metroID = matchLocations[i].metroArea.id;
+
+  //call more than one page to show more results for larger cities
+      $.when(
+        appSong.getConcerts(metroID,1),
+        appSong.getConcerts(metroID,2),
+        appSong.getConcerts(metroID,3)
+      ).then(function(results1,results2,results3) {
+        var bandReturn = [].concat(results1[0].resultsPage.results.event).concat(results2[0].resultsPage.results.event).concat(results3[0].resultsPage.results.event);
+        appSong.displayConcerts(bandReturn);
+        //console.log('return bands playing', bandReturn)
+        
+      });
 
       return false;
-
-    } 
+    }
   }
-} 
+};
+
 
 //STEP 4
-// returns the metro ID of the user selected city
-appSong.getMetroId = function(metroID) {
-  //console.log('appSong.getMetroId', metroID)
-  $.ajax ({
-    url: `http://api.songkick.com/api/3.0/metro_areas/${metroID}/calendar.json`,
+
+// returns the concerts for the matching metro ID of the user selected city
+appSong.getConcerts = function(metroID,pageNumber) {
+  return $.ajax({
+    url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
     method: 'get',
     dataType: 'json',
     data: {
+      page: pageNumber,
       apikey: 'hHSjLHKTmsfByvxU'
     }
-  }).then(function(bandReturn) {
-    bandReturn = bandReturn.resultsPage.results.event
-    appSong.displayConcerts(bandReturn)
-    //console.log('return bands playing', bandReturn)
   });
 }
 
 
 //STEP 5
 appSong.displayConcerts = function(concertsPlaying) {
-  console.log('concertsPlaying', concertsPlaying)
 //take the concert results and display the concert name and bands involved at the concert
-  
-  if (concertsPlaying.length != 0){
+
+if (concertsPlaying.length != 0){
 
     //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
     //$('.theConcerts').append($locationPicked);
-  for (var i = 0; i < concertsPlaying.length; i = i + 1){
     //show only the next 7 days of concerts
     //take the current date
     var today = new Date();
     
     //and add 7 days
     var oneWeek = today.setDate(today.getDate() + 7);
-    console.log('1 week', oneWeek)
-
-    var concertDate = +(new Date(concertsPlaying[i].start.date))
-    console.log('concert date', concertDate)
-  
+    // console.log('1 week', oneWeek)
+    
     //only show those concerts with date in 7 days (compared to the date of the concert) 
-    if (concertDate < oneWeek) {
-      concertsPlaying.forEach(function(concertInfo) {
-
+   
+  //loop through all the concerts
+  concertsPlaying.forEach(function(concertInfo) {
+    //grab the date of each concert
+      var concertDate = +(new Date(concertInfo.start.date))
+    //compare that date to the one week date 
+      if (concertDate < oneWeek) {
+        
         var $concertResults = $('<article>').addClass('concertResults');
         var $concertName = $('<h3>').text(concertInfo.displayName);
         var $bandLists = $('<div>').addClass('bandButtons');
@@ -149,22 +146,23 @@ appSong.displayConcerts = function(concertsPlaying) {
 
         $bandFilter.forEach(function(bandFilter) {
           var $bandNames = $('<input>').attr({
-              value: bandFilter.displayName,
-              name: "bandNames",
-              type: "radio",
-              id: bandFilter.displayName
-            });
+            value: bandFilter.displayName,
+            name: "bandNames",
+            type: "radio",
+            id: bandFilter.displayName
+          });
           var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
-              for: bandFilter.displayName
-            });
+            for: bandFilter.displayName
+          });
 
           $bandLists.append($bandNames, $bandLabel);
 
         })
-        $('.theConcerts').append($concertResults);
-      });
-    }
-  }
+        $('.theConcerts').append($concertResults); 
+      }
+    });
+    
+    
     
     
   } else if (concertsPlaying.length === 0) {
@@ -177,32 +175,31 @@ appSong.displayConcerts = function(concertsPlaying) {
 }
 
 //STEP 6 - take band picked
-appSong.matchBands = function(matchBands) {
+appSong.matchBands = function (matchBands) {
 
-  $('.theConcerts').on('submit', function(e) {
+  $('.theConcerts').on('submit', function (e) {
     e.preventDefault();
-    appSong.bandPicked = $('input[type=radio]:checked').val()
+    appSong.bandPicked = $('input[type=radio]:checked').val();
 
-    appSong.getSpotify(appSong.bandPicked)
+    appSong.getSpotify(appSong.bandPicked);
     //console.log('bandPicked', appSong.bandPicked)
     $('.bandSelection').hide();
-    
+
     // show loading screen, then remove loading screen when iframes are loaded
     $('#loadScreen').show();
     $('.spotifyResults').show();
     // $('#loadScreen').fadeOut(5000);
-    $('.lists').ready(function() {
+    $('.lists').ready(function () {
       $('#loadScreen').fadeOut(5000);
     });
-    
+
     $('.spotifyResults').show();
   });
-
-} //appSong.matchBands
+}; //appSong.matchBands
 
 //STEP 7 - match bands to spotify
-appSong.getSpotify = function(artisit) {
-  $.ajax ({
+appSong.getSpotify = function (artisit) {
+  $.ajax({
     url: 'https://api.spotify.com/v1/search',
     method: 'GET',
     dataType: 'json',
@@ -213,68 +210,64 @@ appSong.getSpotify = function(artisit) {
       type: 'playlist',
       limit: 3
     }
-  }).then(function(playlists) {
-    playlists = playlists.playlists.items
+  }).then(function (playlists) {
+    playlists = playlists.playlists.items;
     //console.log('Spotfiy', playlists)
-    appSong.displayPlaylist(playlists)
+    appSong.displayPlaylist(playlists);
   });
-} //appSong.getSpotify
+}; //appSong.getSpotify
 
 //STEP 8 - display playlists
-appSong.displayPlaylist = function(displayPlaylist) {
+appSong.displayPlaylist = function (displayPlaylist) {
 
   //console.log('displayPlaylist', displayPlaylist)
 
   if (displayPlaylist.length != 0) {
-  //if there are matching playlists - show them
+    //if there are matching playlists - show them
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
 
-    $('.allPlayLists').append($bandPicked)
+    $('.allPlayLists').append($bandPicked);
 
-    displayPlaylist.forEach(function(showingPlaylists) {
+    displayPlaylist.forEach(function (showingPlaylists) {
       var $playlistResult = $('<article>').addClass('playlist');
-      var playlistURI = showingPlaylists.uri
-      console.log(playlistURI)
+      var playlistURI = showingPlaylists.uri;
+      console.log(playlistURI);
       var $actualPlaylist = $('<iframe>').attr({
-        src: `https://embed.spotify.com/?uri=${playlistURI}`,
-        width: '300', 
-        height:'380', 
-        frameborder: '0', 
+        src: 'https://embed.spotify.com/?uri=' + playlistURI,
+        width: '300',
+        height: '380',
+        frameborder: '0',
         allowtransparency: 'true',
         class: 'lists'
       });
 
-      $playlistResult.append($actualPlaylist);  
+      $playlistResult.append($actualPlaylist);
 
       $('.allPlayLists').append($playlistResult);
-
-    })
-
+    });
   } else if (displayPlaylist.length === 0) {
     //if there are no results show .noresults
 
     $('.noplaylistresults').fadeIn();
   }
-
-
-} //displayPlaylist
+}; //displayPlaylist
 
 
 //Runs all the stuffs
-appSong.init = function() {
+appSong.init = function () {
   appSong.getLocations();
   appSong.usersLocation();
-}
+};
 
-$(function() {
+$(function () {
   // shows a loading screen before everything loads, then hides it
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     var load_screen = document.getElementById('loadScreen');
     document.body.removeChild(load_screen);
   });
-  
-  appSong.init()
+
+  appSong.init();
 
   //hide everything except for the heading and the slogan
   $('.search').hide();
@@ -282,15 +275,14 @@ $(function() {
   $('.spotifyResults').hide();
 
   //on click of the startBtn, hide the header page and show the search page
-  $('.startBtn').on('click', function(){
+  $('.startBtn').on('click', function () {
     $('.titlePage').fadeOut();
     $('.search').fadeIn();
-  })
+  });
 
-//when someone clicks on the a tag for logo, refresh the page - go back to start
-  $('.logo').on('click', function() {
+  //when someone clicks on the a tag for logo, refresh the page - go back to start
+  $('.logo').on('click', function () {
     window.location.reload();
     setTimeout(window.location.reload);
   });
 });
-
