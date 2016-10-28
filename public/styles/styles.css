@@ -1,0 +1,656 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button],
+input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+* html .clearfix {
+  height: 1%; }
+
+* {
+  box-sizing: border-box; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button],
+input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* {
+  box-sizing: border-box; }
+
+button {
+  background: #FE7E01;
+  border: none;
+  border-radius: 3px;
+  padding: 15px;
+  font-family: "Montserrat", sans-serif;
+  color: #4C061D;
+  margin-top: 20px;
+  transition: ease all .4s;
+  text-transform: uppercase; }
+  button:hover {
+    background-color: #4C061D;
+    color: #FE7E01; }
+
+input[type="submit"] {
+  background-color: #FE7E01;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 15px;
+  color: #4C061D;
+  margin-top: 20px;
+  transition: ease all .4s;
+  text-transform: uppercase; }
+  input[type="submit"]:hover {
+    background-color: #4C061D;
+    color: #FE7E01; }
+
+.search .locationInput {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center; }
+  .search .locationInput .searchBar {
+    width: 400px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #4C061D;
+    border-radius: 3px;
+    margin-bottom: 25px; }
+  .search .locationInput input[type="submit"] {
+    font-weight: bold;
+    width: 150px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    margin-top: 15px; }
+
+.concertInputs {
+  display: -ms-flexbox;
+  display: flex;
+  position: relative; }
+  .concertInputs img {
+    width: 40px;
+    color: #C6C5B9;
+    position: absolute;
+    left: -25px; }
+
+footer {
+  font-family: "Merriweather", serif;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 10px;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  padding: 0 15px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 55px;
+  margin: 0; }
+  footer .credit {
+    text-align: right;
+    font-family: "Merriweather", serif;
+    margin-top: 5px; }
+    footer .credit ul {
+      list-style: none; }
+      footer .credit ul li {
+        color: #C6C5B9; }
+  footer .contactUs h6 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #C6C5B9;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 8px; }
+  footer .contactUs ul {
+    list-style: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 5px; }
+    footer .contactUs ul li {
+      text-align: left;
+      font-family: "Merriweather", serif;
+      font-size: 10px;
+      padding-right: 25px; }
+      footer .contactUs ul li .fa {
+        font-size: 14px;
+        padding: 0 2px; }
+  footer p {
+    margin: 3px;
+    color: #C6C5B9; }
+  footer a {
+    text-decoration: none;
+    color: white;
+    transition: ease color .3s;
+    color: #C6C5B9; }
+    footer a:hover {
+      color: #FE7E01; }
+
+/*.bandSelection {
+	.modal {
+		display: flex;
+		width: 50%;{
+		input[type="radio"] {
+		display: none;
+	}
+}*/
+.bandSelection .modal {
+  width: 75%;
+  border: 2px solid #4C061D; }
+  .bandSelection .modal input[type="radio"] {
+    display: none; }
+  .bandSelection .modal input[type="submit"] {
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%); }
+
+.concertResults {
+  border-top: 1px solid #C6C5B9;
+  padding-bottom: 15px;
+  -ms-flex: 1 0 auto;
+      flex: 1 0 auto; }
+  .concertResults label {
+    background-color: #4C061D;
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    color: #C6C5B9;
+    transition: ease all .3s; }
+    .concertResults label:hover {
+      color: #FE7E01;
+      cursor: pointer;
+      background-color: rgba(76, 6, 29, 0.8); }
+  .concertResults input[type="radio"]:checked + label {
+    color: #FE7E01;
+    cursor: pointer;
+    background-color: rgba(76, 6, 29, 0.8); }
+
+.bandButtons {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+.theConcerts h2 {
+  color: #4C061D;
+  text-align: center;
+  font-family: "Montserrat", sans-serif; }
+
+#loadScreen {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background: black;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  height: 100vh; }
+  #loadScreen p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px; }
+
+.pulse {
+  animation-name: pulse;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 0.6s;
+  -webkit-animation-iteration-count: infinite;
+  text-align: center; }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7; }
+  50% {
+    transform: scale(1);
+    opacity: 1; }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7; } }
+
+/*.spotifyResults {
+	.modal {
+		margin-top: -95px;
+	}
+}*/
+body {
+  background-image: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.6)), url(../../assets/festival.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  font-family: "Merriweather", serif;
+  color: white; }
+
+h2 {
+  font-family: "Montserrat", sans-serif; }
+
+header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center; }
+  header h2 {
+    margin: 0;
+    padding: 0 60px;
+    text-transform: uppercase;
+    color: #C6C5B9;
+    text-align: center; }
+  header .mainLogo {
+    width: 75%;
+    max-width: 700px; }
+
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px; }
+
+.logo {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  left: 80px; }
+  .logo img {
+    width: 30%;
+    margin-top: 25px; }
+
+.locationInput .citySearch {
+  text-align: center; }
+
+.locationInput .search {
+  width: 250px;
+  font-weight: bold; }
+
+input[type=submit] {
+  font-weight: bold; }
+
+.bandSelection h2 {
+  font-size: 18px; }
+
+.noplaylistresults, .noconcertsresults {
+  display: none; }
+
+.allPlayLists {
+  text-align: center; }
+  .allPlayLists .playlist {
+    display: inline-block;
+    margin: 10px; }
+
+.modal {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  min-width: 280px;
+  height: 60vh;
+  margin: 0 auto;
+  border-radius: 3px;
+  padding: 10px;
+  color: #4C061D;
+  background: rgba(198, 197, 185, 0.9); }
+  .modal h3 {
+    font-family: "Montserrat", sans-serif; }
+  .modal .overflow {
+    width: 100%;
+    overflow-y: scroll;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+
+.findAnother {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+@media (max-width: 915px) {
+  footer {
+    height: 60px;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    bottom: 0px;
+    padding: 0 45px; }
+    footer .credit {
+      display: none; }
+    footer .contactUs h6 {
+      display: none; }
+    footer .contactUs ul {
+      -ms-flex-direction: column;
+          flex-direction: column; }
+      footer .contactUs ul li {
+        text-align: center;
+        padding: 0; }
+  .logo {
+    left: 40px; } }
+
+@media (max-width: 500px) {
+  .search .locationInput .searchBar {
+    width: 300px; }
+  .concertResults {
+    text-align: center; }
+  .bandButtons {
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+  .bandSelection .modal {
+    margin-top: -50px; } }
+
+@media (max-width: 450px) {
+  header {
+    margin-top: -100px; } }
+
+@media (max-height: 415px) {
+  body {
+    height: 100vh; }
+  header {
+    margin-top: -100px; }
+    header .mainLogo {
+      width: 50%; }
+  footer {
+    bottom: 0px; }
+  .locationInput {
+    margin-top: -40px; }
+  .bandSelection .modal {
+    margin-top: 40px;
+    height: 52vh;
+    position: relative; }
+    .bandSelection .modal input[type="submit"] {
+      left: 90%;
+      top: -70px;
+      height: 40px; }
+  .bandSelection h3 {
+    font-size: 14px; }
+  .bandSelection .bandButtons label {
+    padding: 5px 10px;
+    margin-bottom: 5px; }
+  .concertResults {
+    padding-bottom: 0; } }
