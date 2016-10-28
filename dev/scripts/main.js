@@ -127,7 +127,7 @@ appSong.displayConcerts = function(concertsPlaying) {
 
       //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
       
-      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Please click on a band name to see related playlists')
+      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Click on a band name to see related playlists!')
       $('.theConcerts').append($howToUse);
       
       //show only the next 7 days of concerts
@@ -246,7 +246,7 @@ appSong.displayPlaylist = function (displayPlaylist) {
       console.log(playlistURI);
       var $actualPlaylist = $('<iframe>').attr({
         src: 'https://embed.spotify.com/?uri=' + playlistURI,
-        width: '300',
+        width: '260',
         height: '380',
         frameborder: '0',
         allowtransparency: 'true',
@@ -257,7 +257,7 @@ appSong.displayPlaylist = function (displayPlaylist) {
       $allPlayLists.append($playlistResult);
       $overflow.append($allPlayLists);
       $modal.append($overflow);
-      $('.spotifyResults').append($modal);
+      $('.playlists').append($modal);
     });
   } else if (displayPlaylist.length === 0) {
     //if there are no results show .noresults

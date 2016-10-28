@@ -6,6 +6,7 @@
 @import "_footer";
 @import "_bandSection";
 @import "_loading";
+@import "_spotify";
 
 body {
 	background-image: linear-gradient(rgba(5,5,5,.6),rgba(5,5,5,.6)),url(../../assets/festival.jpg);
@@ -20,13 +21,15 @@ body {
 	color: white;
 }
 
+h2 {
+	font-family: $headerText;
+}
+
 header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	h2 {
-		font-family: $headerText;
-		color: white;
 		margin: 0;
 		padding: 0 60px;
 		text-transform: uppercase;
