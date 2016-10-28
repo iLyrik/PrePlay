@@ -127,7 +127,7 @@ appSong.displayConcerts = function(concertsPlaying) {
 
       //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
       
-      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Please click on a band name to see related playlists')
+      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Click on a band name to see related playlists!')
       $('.theConcerts').append($howToUse);
       
       //show only the next 7 days of concerts
