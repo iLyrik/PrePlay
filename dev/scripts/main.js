@@ -198,7 +198,7 @@ appSong.matchBands = function(matchBands) {
     $('.spotifyResults').show();
 
     $('.lists').ready(function() {
-      $('#loadScreen').delay(2000).fadeOut(2500);
+      $('#loadScreen').delay(2000).fadeOut(2000);
     });
   });
 
