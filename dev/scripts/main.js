@@ -11,6 +11,7 @@ appSong.bandPicked = '';
 //STEP 1
 //when user enters city in search field, take value and search in appSong.getMatchingCities
 appSong.usersLocation = function (city) {
+  //console.log('usersLocation', city)
   $('.cities').hide();
 
   $('.locationInput').on('submit', function(e) {
@@ -56,6 +57,7 @@ appSong.getLocations = function () {
 //STEP 2
 //returns list of cities that match query name
 appSong.getMatchingCities = function (city) {
+  //console.log('getMatchingCities', city)
   $.ajax({
     // console.log('appSong.getMetro', arguments);
     url: 'http://api.songkick.com/api/3.0/search/locations.json',
@@ -76,7 +78,7 @@ appSong.getMatchingCities = function (city) {
 //STEP 3
 appSong.matchLocations = function (matchLocations) {
 
-  console.log('matchLocations', matchLocations)
+  //console.log('matchLocations', matchLocations)
 
   for (var i = 0; i <= matchLocations.length; i = i + 1) {
 
@@ -119,62 +121,63 @@ appSong.getConcerts = function(metroID,pageNumber) {
 
 //STEP 5
 appSong.displayConcerts = function(concertsPlaying) {
-//take the concert results and display the concert name and bands involved at the concert
+  //take the concert results and display the concert name and bands involved at the concert
+//  console.log('displayConcerts',concertsPlaying)
+  if (concertsPlaying.length != 0){
 
-if (concertsPlaying.length != 0){
+      //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
+      
+      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Please click on a band name to see related playlists')
+      $('.theConcerts').append($howToUse);
+      
+      //show only the next 7 days of concerts
+      //take the current date
+      var today = new Date();
+      
+      //and add 7 days
+      var oneWeek = today.setDate(today.getDate() + 7);
+      // console.log('1 week', oneWeek)
+      //only show those concerts with date in 7 days (compared to the date of the concert) 
+     
+    //loop through all the concerts
+    concertsPlaying.forEach(function(concertInfo) {
+      if (concertInfo) { 
 
-    //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
-    //$('.theConcerts').append($locationPicked);
-    //show only the next 7 days of concerts
-    //take the current date
-    var today = new Date();
-    
-    //and add 7 days
-    var oneWeek = today.setDate(today.getDate() + 7);
-    // console.log('1 week', oneWeek)
-    
-    //only show those concerts with date in 7 days (compared to the date of the concert) 
-   
-  //loop through all the concerts
-  concertsPlaying.forEach(function(concertInfo) {
-    //grab the date of each concert
-      var concertDate = +(new Date(concertInfo.start.date))
-    //compare that date to the one week date 
-      if (concertDate < oneWeek) {
-        
-        var $concertResults = $('<article>').addClass('concertResults');
-        var $concertName = $('<h3>').text(concertInfo.displayName);
-        var $bandLists = $('<div>').addClass('bandButtons');
-        
-        $concertResults.append($concertName, $bandLists);
+      //grab the date of each concert
+        var concertDate = +(new Date(concertInfo.start.date))
+      //compare that date to the one week date 
+        if (concertDate < oneWeek) {
+          
+          var $concertResults = $('<article>').addClass('concertResults');
+          var $concertName = $('<h3>').text(concertInfo.displayName);
+          var $bandLists = $('<div>').addClass('bandButtons');
+          
+          $concertResults.append($concertName, $bandLists);
 
-        var $bandFilter = concertInfo.performance;
+          var $bandFilter = concertInfo.performance;
 
-        $bandFilter.forEach(function(bandFilter) {
-          var $bandNames = $('<input>').attr({
-            value: bandFilter.displayName,
-            name: "bandNames",
-            type: "radio",
-            id: bandFilter.displayName
-          });
-          var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
-            for: bandFilter.displayName
-          });
+          $bandFilter.forEach(function(bandFilter) {
+            var $bandNames = $('<input>').attr({
+              value: bandFilter.displayName,
+              name: "bandNames",
+              type: "radio",
+              id: bandFilter.displayName
+            });
+            var $bandLabel = $('<label>').text(bandFilter.displayName).attr({
+              for: bandFilter.displayName
+            });
 
-          $bandLists.append($bandNames, $bandLabel);
+            $bandLists.append($bandNames, $bandLabel);
 
-        })
-        $('.theConcerts').append($concertResults); 
-      }
+          })
+          $('.theConcerts').append($concertResults); 
+        }
+      } 
     });
-    
-    
-    
-    
+      
   } else if (concertsPlaying.length === 0) {
     $('.noconcertsresults').fadeIn();
   }
-
 
   appSong.matchBands(concertsPlaying)
 
@@ -230,6 +233,9 @@ appSong.displayPlaylist = function (displayPlaylist) {
     //if there are matching playlists - show them
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
+    var $modal = $('<article>').addClass('modal')
+    var $overflow = $('<div>').addClass('overflow')
+    var $allPlayLists = $('<div>').addClass('allPlayLists')
 
     $('.allPlayLists').append($bandPicked);
 
@@ -247,8 +253,9 @@ appSong.displayPlaylist = function (displayPlaylist) {
       });
 
       $playlistResult.append($actualPlaylist);
-
-      $('.allPlayLists').append($playlistResult);
+      $overflow.append($allPlayLists);
+      $modal.append($overflow);
+      $('.spotifyResults').append($modal);
     });
   } else if (displayPlaylist.length === 0) {
     //if there are no results show .noresults

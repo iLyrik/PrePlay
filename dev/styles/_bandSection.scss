@@ -26,9 +26,7 @@
 	border-top: 1px solid $grey;
 	padding-bottom: 15px;
 	flex: 1 0 auto;
-	&:first-of-type {
-		border: none;
-	}
+
 	label {
 		background-color: $purple;
 		border-radius: 20px;
