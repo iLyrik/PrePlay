@@ -13,7 +13,13 @@ appSong.bandPicked = '';
 appSong.usersLocation = function (city) {
   $('.cities').hide();
 
-  $('.locationInput').on('submit', function (e) {
+  $('.locationInput').on('submit', function(e) {
+    // load screen
+    $('#loadScreen').show();
+    $('.cities').ready(function() {
+      $('#loadScreen').fadeOut();
+    });
+
     $('.cities').show();
     e.preventDefault();
     //move from the search section to the concerts section using fade
@@ -188,12 +194,10 @@ appSong.matchBands = function (matchBands) {
     // show loading screen, then remove loading screen when iframes are loaded
     $('#loadScreen').show();
     $('.spotifyResults').show();
-    // $('#loadScreen').fadeOut(5000);
-    $('.lists').ready(function () {
-      $('#loadScreen').fadeOut(5000);
-    });
 
-    $('.spotifyResults').show();
+    $('.lists').ready(function() {
+      $('#loadScreen').delay(2000).fadeOut(2000);
+    });
   });
 }; //appSong.matchBands
 
@@ -262,9 +266,8 @@ appSong.init = function () {
 
 $(function () {
   // shows a loading screen before everything loads, then hides it
-  window.addEventListener('load', function () {
-    var load_screen = document.getElementById('loadScreen');
-    document.body.removeChild(load_screen);
+  window.addEventListener('load', function() {
+    $('#loadScreen').fadeOut();
   });
 
   appSong.init();
