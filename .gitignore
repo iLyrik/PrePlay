@@ -1,7 +1,3 @@
 .sass-cache/
-*.css.map
-*.css
 .DS_Store
-public/styles
-public/scripts
 node_modules
