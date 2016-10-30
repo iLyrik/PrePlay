@@ -68,11 +68,13 @@ appSong.getMatchingCities = function (city) {
     dataType: 'jsonp',
     jsonp: 'jsoncallback',
     data: {
-      reqUrl: 'http://api.songkick.com/api/3.0/search/locations.json',
-      params: {
-        query: city,
-        apikey: 'hHSjLHKTmsfByvxU'
-      }
+      query: city,
+      apikey: 'hHSjLHKTmsfByvxU'
+      // reqUrl: 'http://api.songkick.com/api/3.0/search/locations.json',
+      // params: {
+      //   query: city,
+      //   apikey: 'hHSjLHKTmsfByvxU'
+      // }
     }
   }).then(function (metroLocation) {
     metroLocation = metroLocation.resultsPage.results.location;
@@ -113,15 +115,18 @@ appSong.getConcerts = function (metroID, pageNumber) {
     method: 'get',
     dataType: 'jsonp',
     jsonp: 'jsoncallback',
+
     // url: 'http://proxy.hackeryou.com',
     // method: 'GET',
     // dataType: 'json',
     data: {
-      reqUrl: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
-      params: {
-        page: pageNumber,
-        apikey: 'hHSjLHKTmsfByvxU'
-      }
+      page: pageNumber,
+      apikey: 'hHSjLHKTmsfByvxU'
+      // reqUrl: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
+      // params: {
+      //   page: pageNumber,
+      //   apikey: 'hHSjLHKTmsfByvxU'
+      // }
     }
   });
 };
