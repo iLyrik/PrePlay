@@ -1,3 +1,5 @@
+'use strict';
+
 var appSong = {};
 
 appSong.city = '';
@@ -14,11 +16,11 @@ appSong.usersLocation = function (city) {
   //console.log('usersLocation', city)
   $('.cities').hide();
 
-  $('.locationInput').on('submit', function(e) {
+  $('.locationInput').on('submit', function (e) {
     // load screen
     $('#loadScreen').show();
     $('.cities').show();
-    $('.cities').ready(function() {
+    $('.cities').ready(function () {
       $('#loadScreen').delay(1000).fadeOut();
     });
 
@@ -83,23 +85,18 @@ appSong.getMatchingCities = function (city) {
 //STEP 3
 appSong.matchLocations = function (matchLocations) {
 
-  console.log('matchLocations', matchLocations)
+  console.log('matchLocations', matchLocations);
 
   for (var i = 0; i <= matchLocations.length; i = i + 1) {
 
     if (appSong.city === matchLocations[i].city.displayName && appSong.country === matchLocations[i].city.country.displayName) {
       var metroID = matchLocations[i].metroArea.id;
 
-  //call more than one page to show more results for larger cities
-      $.when(
-        appSong.getConcerts(metroID,1),
-        appSong.getConcerts(metroID,2),
-        appSong.getConcerts(metroID,3)
-      ).then(function(results1,results2,results3) {
+      //call more than one page to show more results for larger cities
+      $.when(appSong.getConcerts(metroID, 1), appSong.getConcerts(metroID, 2), appSong.getConcerts(metroID, 3)).then(function (results1, results2, results3) {
         var bandReturn = [].concat(results1[0].resultsPage.results.event).concat(results2[0].resultsPage.results.event).concat(results3[0].resultsPage.results.event);
         appSong.displayConcerts(bandReturn);
         //console.log('return bands playing', bandReturn)
-        
       });
 
       return false;
@@ -107,11 +104,10 @@ appSong.matchLocations = function (matchLocations) {
   }
 };
 
-
 //STEP 4
 
 // returns the concerts for the matching metro ID of the user selected city
-appSong.getConcerts = function(metroID,pageNumber) {
+appSong.getConcerts = function (metroID, pageNumber) {
   return $.ajax({
     url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
     method: 'get',
@@ -128,47 +124,46 @@ appSong.getConcerts = function(metroID,pageNumber) {
       }
     }
   });
-}
-
+};
 
 //STEP 5
-appSong.displayConcerts = function(concertsPlaying) {
+appSong.displayConcerts = function (concertsPlaying) {
   //take the concert results and display the concert name and bands involved at the concert
-//  console.log('displayConcerts',concertsPlaying)
-  if (concertsPlaying.length != 0){
+  //  console.log('displayConcerts',concertsPlaying)
+  if (concertsPlaying.length != 0) {
 
-      //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
-      
-      var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Click on a band name to see related playlists!')
-      $('.theConcerts').append($howToUse);
-      
-      //show only the next 7 days of concerts
-      //take the current date
-      var today = new Date();
-      
-      //and add 7 days
-      var oneWeek = today.setDate(today.getDate() + 7);
-      // console.log('1 week', oneWeek)
-      //only show those concerts with date in 7 days (compared to the date of the concert) 
-     
+    //var $locationPicked = $('<h2>').text(appSong.city + ", " + appSong.country);
+
+    var $howToUse = $('<h2>').text('Here is a list of concerts near you in the next 7 days. Click on a band name to see related playlists!');
+    $('.theConcerts').append($howToUse);
+
+    //show only the next 7 days of concerts
+    //take the current date
+    var today = new Date();
+
+    //and add 7 days
+    var oneWeek = today.setDate(today.getDate() + 7);
+    // console.log('1 week', oneWeek)
+    //only show those concerts with date in 7 days (compared to the date of the concert) 
+
     //loop through all the concerts
-    concertsPlaying.forEach(function(concertInfo) {
-      if (concertInfo) { 
+    concertsPlaying.forEach(function (concertInfo) {
+      if (concertInfo) {
 
-      //grab the date of each concert
-        var concertDate = +(new Date(concertInfo.start.date))
-      //compare that date to the one week date 
+        //grab the date of each concert
+        var concertDate = +new Date(concertInfo.start.date);
+        //compare that date to the one week date 
         if (concertDate < oneWeek) {
-          
+
           var $concertResults = $('<article>').addClass('concertResults');
           var $concertName = $('<h3>').text(concertInfo.displayName);
           var $bandLists = $('<div>').addClass('bandButtons');
-          
+
           $concertResults.append($concertName, $bandLists);
 
           var $bandFilter = concertInfo.performance;
 
-          $bandFilter.forEach(function(bandFilter) {
+          $bandFilter.forEach(function (bandFilter) {
             var $bandNames = $('<input>').attr({
               value: bandFilter.displayName,
               name: "bandNames",
@@ -180,24 +175,21 @@ appSong.displayConcerts = function(concertsPlaying) {
             });
 
             $bandLists.append($bandNames, $bandLabel);
-
-          })
-          $('.theConcerts').append($concertResults); 
+          });
+          $('.theConcerts').append($concertResults);
         }
-      } 
+      }
     });
-      
   } else if (concertsPlaying.length === 0) {
     $('.noconcertsresults').fadeIn();
   }
 
-  appSong.matchBands(concertsPlaying)
-
-}
+  appSong.matchBands(concertsPlaying);
+};
 
 //STEP 6 - take band picked
 appSong.matchBands = function (matchBands) {
-//console.log('appSong.matchBands', matchBands)
+  //console.log('appSong.matchBands', matchBands)
   $('.theConcerts').on('submit', function (e) {
     e.preventDefault();
     appSong.bandPicked = $('input[type=radio]:checked').val();
@@ -210,7 +202,7 @@ appSong.matchBands = function (matchBands) {
     $('#loadScreen').show();
     $('.spotifyResults').show();
 
-    $('.lists').ready(function() {
+    $('.lists').ready(function () {
       $('#loadScreen').delay(1500).fadeOut(2000);
     });
   });
@@ -218,7 +210,7 @@ appSong.matchBands = function (matchBands) {
 
 //STEP 7 - match bands to spotify
 appSong.getSpotify = function (artisit) {
-//console.log('appSong.getSpotify', artisit)
+  //console.log('appSong.getSpotify', artisit)
   $.ajax({
     url: 'https://api.spotify.com/v1/search',
     method: 'GET',
@@ -239,16 +231,16 @@ appSong.getSpotify = function (artisit) {
 
 //STEP 8 - display playlists
 appSong.displayPlaylist = function (displayPlaylist) {
-//console.log('appSong.displayPlaylist', displayPlaylist)
+  //console.log('appSong.displayPlaylist', displayPlaylist)
   //console.log('displayPlaylist', displayPlaylist)
 
   if (displayPlaylist.length != 0) {
     //if there are matching playlists - show them
 
     var $bandPicked = $('<h2>').text(appSong.bandPicked);
-    var $modal = $('<article>').addClass('modal')
-    var $overflow = $('<div>').addClass('overflow')
-    var $allPlayLists = $('<div>').addClass('allPlayLists')
+    var $modal = $('<article>').addClass('modal');
+    var $overflow = $('<div>').addClass('overflow');
+    var $allPlayLists = $('<div>').addClass('allPlayLists');
 
     $($allPlayLists).append($bandPicked);
 
@@ -287,7 +279,7 @@ appSong.init = function () {
 
 $(function () {
   // shows a loading screen before everything loads, then hides it
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     $('#loadScreen').fadeOut();
   });
 
