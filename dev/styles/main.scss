@@ -107,6 +107,7 @@ input[type=submit] {
   .overflow {
     width: 100%;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-wrap: wrap;
   }
