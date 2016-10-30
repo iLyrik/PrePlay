@@ -60,15 +60,13 @@ appSong.getMatchingCities = function (city) {
   //console.log('getMatchingCities', city)
   $.ajax({
     // console.log('appSong.getMetro', arguments);
-    url: 'http://proxy.hackeryou.com',
+    url: 'http://api.songkick.com/api/3.0/search/locations.json',
     method: 'GET',
-    dataType: 'json',
+    dataType: 'jsonp',
+    jsonp: 'jsoncallback',
     data: {
-      reqUrl: 'http://api.songkick.com/api/3.0/search/locations.json',
-      params: {
-        query: city,
-        apikey: 'hHSjLHKTmsfByvxU'
-      }
+      query: city,
+      apikey: 'hHSjLHKTmsfByvxU'
     }
   }).then(function (metroLocation) {
     metroLocation = metroLocation.resultsPage.results.location;
@@ -81,7 +79,7 @@ appSong.getMatchingCities = function (city) {
 //STEP 3
 appSong.matchLocations = function (matchLocations) {
 
-  //console.log('matchLocations', matchLocations)
+  console.log('matchLocations', matchLocations)
 
   for (var i = 0; i <= matchLocations.length; i = i + 1) {
 
@@ -111,15 +109,13 @@ appSong.matchLocations = function (matchLocations) {
 // returns the concerts for the matching metro ID of the user selected city
 appSong.getConcerts = function(metroID,pageNumber) {
   return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    method: 'GET',
-    dataType: 'json',
+    url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
+    method: 'get',
+    dataType: 'jsonp',
+    jsonp: 'jsoncallback',
     data: {
-      reqUrl: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
-      params: {
-        page: pageNumber,
-        apikey: 'hHSjLHKTmsfByvxU'
-      }
+      page: pageNumber,
+      apikey: 'hHSjLHKTmsfByvxU'
     }
   });
 }
