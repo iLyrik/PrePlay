@@ -53,19 +53,20 @@ appSong.getLocations = function () {
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), { types: ['geocode'] });
 }; //appSong.getLocations
 
-
 //STEP 2
 //returns list of cities that match query name
 appSong.getMatchingCities = function (city) {
   //console.log('getMatchingCities', city)
   $.ajax({
     // console.log('appSong.getMetro', arguments);
+    // url: 'http://api.songkick.com/api/3.0/search/locations.json?location=clientip&apikey={your_api_key}&jsoncallback=?'
     url: 'http://api.songkick.com/api/3.0/search/locations.json',
     method: 'GET',
-    dataType: 'json',
+    dataType: 'jsonp',
+    jsonp: 'jsoncallback',
     data: {
       query: city,
-      apikey: 'hHSjLHKTmsfByvxU'
+      apikey: 'hHSjLHKTmsfByvxU',
     }
   }).then(function (metroLocation) {
     metroLocation = metroLocation.resultsPage.results.location;
@@ -110,7 +111,8 @@ appSong.getConcerts = function(metroID,pageNumber) {
   return $.ajax({
     url: 'http://api.songkick.com/api/3.0/metro_areas/' + metroID + '/calendar.json',
     method: 'get',
-    dataType: 'json',
+    dataType: 'jsonp',
+    jsonp: 'jsoncallback',
     data: {
       page: pageNumber,
       apikey: 'hHSjLHKTmsfByvxU'
