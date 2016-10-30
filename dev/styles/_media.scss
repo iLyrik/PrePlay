@@ -43,7 +43,20 @@
 	}
 	.bandSelection {
 		.modal {
-		    margin-top: -50px
+		    margin-top: -50px;
+		}
+	}
+}
+
+@media (max-width: 450px) {
+	.bandSelection {
+		.modal {
+			input[type="submit"] {
+				position: absolute;
+			    bottom: 15px;
+			    left: 50%;
+			    transform: translateX(-50%);
+			}
 		}
 	}
 }
