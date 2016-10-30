@@ -100,6 +100,7 @@ input[type=submit] {
   border-radius: 3px;
   padding: 10px;
   color: $purple;
+  overflow-y: scroll;
   background: rgba(198,197,185, .9);
   h3 {
     font-family: $headerText;
@@ -107,6 +108,7 @@ input[type=submit] {
   .overflow {
     width: 100%;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-wrap: wrap;
   }
