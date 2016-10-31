@@ -443,6 +443,9 @@ footer {
   text-align: center;
   font-family: "Montserrat", sans-serif; }
 
+.noconcertsresults, .noplaylistresults {
+  text-align: center; }
+
 #loadScreen {
   display: -ms-flexbox;
   display: flex;
