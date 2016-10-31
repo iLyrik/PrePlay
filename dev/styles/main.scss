@@ -93,14 +93,13 @@ input[type=submit] {
 .modal {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   min-width: 280px;
   height: 60vh;
   margin: 0 auto;
   border-radius: 3px;
   padding: 10px;
   color: $purple;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   background: rgba(198,197,185, .9);
   h3 {
     font-family: $headerText;
