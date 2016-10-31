@@ -568,6 +568,7 @@ input[type=submit] {
   border-radius: 3px;
   padding: 10px;
   color: #4C061D;
+  overflow-y: scroll;
   background: rgba(198, 197, 185, 0.9); }
   .modal h3 {
     font-family: "Montserrat", sans-serif; }
