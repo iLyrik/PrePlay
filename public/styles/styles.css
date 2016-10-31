@@ -398,16 +398,17 @@ footer {
     footer a:hover {
       color: #FE7E01; }
 
-.bandSelection .modal {
-  width: 75%;
-  border: 2px solid #4C061D; }
-  .bandSelection .modal input[type="radio"] {
-    display: none; }
-  .bandSelection .modal input[type="submit"] {
-    position: absolute;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%); }
+.bandSelection {
+  width: 75%; }
+  .bandSelection .modal {
+    border: 2px solid #4C061D; }
+    .bandSelection .modal input[type="radio"] {
+      display: none; }
+    .bandSelection .modal input[type="submit"] {
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%); }
 
 .concertResults {
   border-top: 1px solid #C6C5B9;
@@ -480,11 +481,9 @@ footer {
     transform: scale(0.9);
     opacity: 0.7; } }
 
-/*.spotifyResults {
-	.modal {
-		margin-top: -95px;
-	}
-}*/
+.spotifyResults {
+  width: 100%; }
+
 body {
   background-image: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.6)), url(../../assets/festival.jpg);
   background-size: cover;
@@ -561,7 +560,6 @@ input[type=submit] {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 100%;
   min-width: 280px;
   height: 60vh;
   margin: 0 auto;
