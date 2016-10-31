@@ -89,6 +89,18 @@ appSong.matchLocations = function (matchLocations) {
 
   for (var i = 0; i <= matchLocations.length; i = i + 1) {
 
+    // When USA is picked
+    // make United States = US
+    if (appSong.country === "United States") {
+      appSong.country = "US"
+    }
+
+    // When UK is picked
+    // make United Kingdom = UK
+    if (appSong.country === "United Kingdom") {
+      appSong.country = "UK"
+    }
+
     if (appSong.city === matchLocations[i].city.displayName && appSong.country === matchLocations[i].city.country.displayName) {
       var metroID = matchLocations[i].metroArea.id;
 
