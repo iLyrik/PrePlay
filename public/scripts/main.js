@@ -29,6 +29,8 @@ appSong.usersLocation = function (city) {
     $('.search').fadeOut();
     $('.bandSelection').fadeIn();
     appSong.locationPicked = $('#autocomplete').val();
+    console.log(appSong.locationPicked);
+
     //take the location that the user entered and split into an array
     appSong.locationPicked = appSong.locationPicked.split(', ');
 
@@ -45,6 +47,9 @@ appSong.usersLocation = function (city) {
       appSong.country = appSong.locationPicked[1];
 
       appSong.getMatchingCities(appSong.city);
+    } else {
+      $('.pickcity').fadeIn();
+      $('.modal').hide();
     }
   });
 }; //appSong.usersLocation
