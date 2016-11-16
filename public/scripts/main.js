@@ -42,13 +42,15 @@ appSong.usersLocation = function (city) {
       appSong.country = appSong.locationPicked[2];
 
       appSong.getMatchingCities(appSong.city);
+      $('.pickcity').hide();
     } else if (appSong.locationPicked.length === 2) {
       appSong.city = appSong.locationPicked[0];
       appSong.country = appSong.locationPicked[1];
 
       appSong.getMatchingCities(appSong.city);
-    } else {
-      $('.pickcity').fadeIn();
+      $('.pickcity').hide();
+    } else if (appSong.locationPicked.length === 1) {
+      $('.pickcity').show();
       $('.modal').hide();
     }
   });
